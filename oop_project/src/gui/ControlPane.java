@@ -36,7 +36,7 @@ public class ControlPane extends VBox{
 	
 	public ControlPane(ChessPane chessPane) {
 		super();
-		this.ChessPane = chessPane;
+		this.chessPane = chessPane;
 		//To be implemented
 		setAlignment(Pos.CENTER);
 		setPrefWidth(300);
@@ -93,7 +93,7 @@ public class ControlPane extends VBox{
 		getChildren().remove(tp2);
 		GameLogic.getInstance().newGame();
 		updateGameText("Tic Tac Toe");
-		for(TicTacToeCell x:ChessPane.getAllCells()){
+		for(TicTacToeCell x:chessPane.getAllCells()){
 			x.initializeCellColor();
 		}
 		inttializeTimeText();

@@ -1,7 +1,7 @@
 package main;
 
 import gui.ControlPane;
-import gui.TicTacToePane;
+import gui.ChessPane;
 import gui.TimerPane;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -25,13 +25,13 @@ public class Main extends Application {
 
 		root.setPrefWidth(800);
 		GameLogic.getInstance();
-		TicTacToePane ticTacToePane = new TicTacToePane();
-		ControlPane controlPane = new ControlPane(ticTacToePane);
+		ChessPane chessPane = new ChessPane(5,3);
+		ControlPane controlPane = new ControlPane(chessPane);
 		
 		GameLogic.getInstance().setControlPane(controlPane);
 
 
-		root.getChildren().add(ticTacToePane);
+		root.getChildren().add(chessPane);
 		root.getChildren().add(controlPane);
 
 		Scene scene = new Scene(root);
