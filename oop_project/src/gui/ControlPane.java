@@ -22,21 +22,21 @@ public class ControlPane extends VBox{
 	private Button newGameButton;
 	private Button startButton;
 
-	public TicTacToePane getTicTacToePane() {
-		return ticTacToePane;
+	public ChessPane getChessPane() {
+		return chessPane;
 	}
 
-	public void setTicTacToePane(TicTacToePane ticTacToePane) {
-		this.ticTacToePane = ticTacToePane;
+	public void setChessPane(ChessPane chessPane) {
+		this.chessPane = chessPane;
 	}
 
-	private TicTacToePane ticTacToePane;
+	private ChessPane chessPane;
 	private TimerPane tp1;
 	private TimerPane tp2;
 	
-	public ControlPane(TicTacToePane ticTacToePane) {
+	public ControlPane(ChessPane chessPane) {
 		super();
-		this.ticTacToePane = ticTacToePane;
+		this.ChessPane = chessPane;
 		//To be implemented
 		setAlignment(Pos.CENTER);
 		setPrefWidth(300);
@@ -68,13 +68,13 @@ public class ControlPane extends VBox{
 	}
 	
 	private void initializeNewGameButton() {
-		this.newGameButton=new Button("New Game");
+		this.newGameButton=new Button("Select Level");
 		newGameButton.setPrefWidth(100);
 		newGameButton.setOnAction(e->newGameButtonHandler());
 		
 	}
 	private void initializeStartButton() {
-		this.startButton=new Button("Start");
+		this.startButton=new Button("Quit");
 		startButton.setPrefWidth(100);
 		startButton.setOnAction(e->newStartButtonHandler());
 	}
@@ -93,7 +93,7 @@ public class ControlPane extends VBox{
 		getChildren().remove(tp2);
 		GameLogic.getInstance().newGame();
 		updateGameText("Tic Tac Toe");
-		for(TicTacToeCell x:ticTacToePane.getAllCells()){
+		for(TicTacToeCell x:ChessPane.getAllCells()){
 			x.initializeCellColor();
 		}
 		inttializeTimeText();
