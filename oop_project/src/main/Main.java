@@ -2,12 +2,14 @@ package main;
 
 import gui.ControlPane;
 import gui.ChessPane;
+import gui.LevelSelectPane;
 import gui.TimerPane;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -16,8 +18,9 @@ import logic.GameLogic;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
+
+
+
 		HBox root = new HBox();
 		root.setPadding(new Insets(10));
 		root.setSpacing(10);
@@ -29,9 +32,11 @@ public class Main extends Application {
 		ControlPane controlPane = new ControlPane(chessPane);
 		
 		GameLogic.getInstance().setControlPane(controlPane);
+		ScrollPane scrollPane = new ScrollPane(LevelSelectPane.getInstance());
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		root.getChildren().add(scrollPane);
 
-
-		root.getChildren().add(chessPane);
 		root.getChildren().add(controlPane);
 
 		Scene scene = new Scene(root);

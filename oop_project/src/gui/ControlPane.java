@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -48,6 +49,7 @@ public class ControlPane extends VBox{
 		getChildren().addAll(gameText,newGameButton,startButton);
 
 	}
+
 	
 	private void initializeGameText() {
 		gameText=new Text("Tic Tac Toe");
