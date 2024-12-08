@@ -25,7 +25,7 @@ public class Main extends Application {
 
 		root.setPrefWidth(800);
 		GameLogic.getInstance();
-		ChessPane chessPane = new ChessPane(5,3);
+		ChessPane chessPane = new ChessPane(3,3);
 		ControlPane controlPane = new ControlPane(chessPane);
 		
 		GameLogic.getInstance().setControlPane(controlPane);

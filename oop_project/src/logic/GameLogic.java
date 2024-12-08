@@ -76,7 +76,7 @@ public class GameLogic {
 					}
 				});
 
-				plTimer.decrementTimer(2);
+				plTimer.incrementTimer(2);
 			}
 		}
 		else {
@@ -95,7 +95,7 @@ public class GameLogic {
 					}
 				});
 
-				plTimer.decrementTimer(2);
+				plTimer.incrementTimer(2);
 
 			}
 		}
@@ -107,7 +107,7 @@ public class GameLogic {
 			return;
 		}
 	}
-	private void runWinningPattern()  {
+	private void runWinningPattern()   {
 		/*
 		 * FIX CODES
 		 * The following code will make the winning cells change to green background,but it will freeze
