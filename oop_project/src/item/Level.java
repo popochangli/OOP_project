@@ -12,6 +12,7 @@ public class Level {
 //    private Image image;
     private String description;
 
+
     public Level(String name, String author, int stars, String description) {
         setName(name);
         setAuthor(author);
