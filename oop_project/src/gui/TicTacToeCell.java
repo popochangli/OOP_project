@@ -35,13 +35,8 @@ public class TicTacToeCell extends Pane{
 		this.xURL = "x.png";
 		this.setxPosition(x);
 		this.setyPosition(y);
-		setPrefSize(150, 150);
-		setPrefHeight(150);
 		setBaseColor(Color.MOCCASIN);
 		initializeCellColor();
-
-
-
 
 		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
@@ -56,13 +51,13 @@ public class TicTacToeCell extends Pane{
 			if (!isDrawn) {
 				if (GameLogic.getInstance().isOturn()) {
 
-                                draw(new Image(ClassLoader.getSystemResource(oURL).toString()), Color.AQUA);
+                                draw(new Image(ClassLoader.getSystemResource(oURL).toString()), Color.AQUA, 150);
 
 					GameLogic.getInstance().beginTurns(1);
 
 				} else {
 
-                                draw(new Image(ClassLoader.getSystemResource(xURL).toString()), Color.YELLOW);
+                                draw(new Image(ClassLoader.getSystemResource(xURL).toString()), Color.YELLOW, 150);
 
 					GameLogic.getInstance().beginTurns(0);
 				}
@@ -72,12 +67,12 @@ public class TicTacToeCell extends Pane{
 		}
 	}
 
-	public void draw(Image image, Color backgroundColor) {
+	public void draw(Image image, Color backgroundColor, int size) {
 		getChildren().add(button);
 		getChildren().remove(button);
 		BackgroundFill bgFill = new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY);
 		BackgroundFill[] bgFillA = {bgFill};
-		BackgroundSize bgSize = new BackgroundSize(150,150,false,false,false,false);
+		BackgroundSize bgSize = new BackgroundSize(size, size,false,false,false,false);
 		this.setBackground(new Background(bgFillA));
 		BackgroundImage bgImg = new BackgroundImage(image, null, null, null, bgSize);
 		BackgroundImage[] bgImgA = {bgImg};

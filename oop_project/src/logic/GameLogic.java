@@ -141,9 +141,9 @@ public class GameLogic {
 					@Override
 					public void run() {
 						if (isOTurn) {
-							controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("o.png").toString()), Color.GREEN);
+							controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("kingB.png").toString()), Color.GREEN, 150);
 						} else {
-							controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("x.png").toString()), Color.GREEN);
+							controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("x.png").toString()), Color.GREEN, 150);
 						}
 					}
 				});

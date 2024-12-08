@@ -20,7 +20,7 @@ public class LevelPane extends GridPane {
 
         Text nameText = new Text(level.getName());
 
-        ChessPane chessPane = new ChessPane(3, 3);
+        ChessPane chessPane = new ChessPane(level.getWidth(), level.getHeight());
 
         this.add(nameText,1,0);
         this.add(starsText, 1, 3);

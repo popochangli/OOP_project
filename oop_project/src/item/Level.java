@@ -10,15 +10,19 @@ public class Level {
     private String author;
     private int stars;
 //    private Image image;
-    private String description;
+
+    private int height;
+
+    private int width;
 
 
-    public Level(String name, String author, int stars, String description) {
+    public Level(String name, String author, int stars, int width, int height) {
         setName(name);
         setAuthor(author);
         setStars(stars);
 //        setImageByPath(imagePath);
-        setDescription(description);
+        setWidth(width);
+        setHeight(height);
     }
 
     public Level(String name, String author, String stars, String description) {
@@ -31,7 +35,7 @@ public class Level {
             setStars(0);
         }
 //        setImageByPath(imagePath);
-        setDescription(description);
+//        setDescription(description);
     }
 
     public String getName() {
@@ -62,13 +66,13 @@ public class Level {
 //        return image;
 //    }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
 //    public void setImageByPath(String imagePath) {
 //        try {
@@ -81,4 +85,20 @@ public class Level {
 //            }
 //        }
 //    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
 }
