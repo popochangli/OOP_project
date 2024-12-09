@@ -20,10 +20,12 @@ public class ChessPane extends GridPane {
 
 	private ArrayList<TicTacToeCell> allCells;
 	private static final Map<String, Image> imageCache = new HashMap<>();
-	private int width;
+	private int chessPaneWidth;
+	private int chessPaneHeight;
 	
 	public ChessPane(int width, int height, ArrayList<String> pieces) {
-		this.width = width;
+		this.chessPaneWidth = width;
+		this.chessPaneHeight = height;
 		
 		this.setHgap(8.0);
 		this.setVgap(8.0);
@@ -68,6 +70,32 @@ public class ChessPane extends GridPane {
 
 	}
 
+	
+
+	public int getChessPaneWidth() {
+		return chessPaneWidth;
+	}
+
+
+
+	public void setChessPaneWidth(int chessPaneWidth) {
+		this.chessPaneWidth = chessPaneWidth;
+	}
+
+
+
+	public int getChessPaneHeight() {
+		return chessPaneHeight;
+	}
+
+
+
+	public void setChessPaneHeight(int chessPaneHeight) {
+		this.chessPaneHeight = chessPaneHeight;
+	}
+
+
+
 	private Image loadImage(String imagePath) {
 		if (!imageCache.containsKey(imagePath)) {
 			imageCache.put(imagePath, new Image(ClassLoader.getSystemResource(imagePath).toString()));
@@ -80,7 +108,16 @@ public class ChessPane extends GridPane {
 	}
 	
 	public TicTacToeCell getCell(int x, int y) {
-	    return allCells.get(y * width + x);
+	    if (x < 0 || x >= chessPaneWidth || y < 0 || y >= chessPaneHeight) {
+	        //System.out.println("Invalid cell coordinates: (" + x + ", " + y + ")");
+	        return null;
+	    }
+	    //int index = y * chessPaneWidth + x;
+	    int index = x * chessPaneHeight + y;
+	    //System.out.println("Retrieving cell at (" + x + ", " + y + ") -> Index: " + index);
+	    return allCells.get(index);
 	}
+
+	
 
 }

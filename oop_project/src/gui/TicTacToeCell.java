@@ -81,7 +81,45 @@ public class TicTacToeCell extends Pane {
 			content.putImage(pieceImage);
 			content.putString(pieceType);
 			db.setContent(content);
+			
+//			// Highlight valid moves
+//		    ChessPane chessPane = (ChessPane) this.getParent(); // Assuming parent is ChessPane
+//		    int startX = GridPane.getColumnIndex(this);
+//		    int startY = GridPane.getRowIndex(this);
+//
+//		    // Iterate through all cells in the chessPane
+//		    for (int x = 0; x < chessPane.getColumnCount(); x++) {
+//		        for (int y = 0; y < chessPane.getRowCount(); y++) {
+//		            TicTacToeCell targetCell = chessPane.getCell(x, y);
+//		            if (validateMove(pieceType, startX, startY, x, y, chessPane)) {
+//		                targetCell.setBorder(new Border(new BorderStroke(
+//		                        Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		            }
+//		        }
+//		    }
+			// Highlight valid moves
+	        ChessPane chessPane = (ChessPane) this.getParent();
+	        Integer startX = GridPane.getColumnIndex(this);
+	        Integer startY = GridPane.getRowIndex(this);
 
+	        if (startX == null || startY == null) {
+	            System.out.println("Source cell coordinates could not be determined.");
+	            return;
+	        }
+
+	        System.out.println("Highlighting valid moves for piece at (" + startX + ", " + startY + ")");
+	        for (int x = 0; x < chessPane.getChessPaneWidth(); x++) {
+	            for (int y = 0; y < chessPane.getChessPaneHeight(); y++) {
+	                TicTacToeCell targetCell = chessPane.getCell(x, y);
+	                //System.out.println(chessPane.getAllCells());
+	                System.out.println(x+","+y+","+targetCell.getPieceType()+","+validateMove(this.pieceType, startX, startY, x, y, chessPane));
+	                if (targetCell != null && validateMove(pieceType, startX, startY, x, y, chessPane)) {
+	                    targetCell.setBorder(new Border(new BorderStroke(
+	                            Color.GREEN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	                }
+	            }
+	        }
+			
 			// Temporarily clear the piece from the source cell
 			clearPiece();
 			event.consume();
@@ -137,14 +175,16 @@ public class TicTacToeCell extends Pane {
 		    if (db.hasImage() && db.hasString()) {
 		        String incomingPieceType = db.getString();
 		        ChessPane chessPane = (ChessPane) this.getParent(); // Assuming the parent is ChessPane
-
+		        //System.out.println("ho");
+		        
 		        // Get source and target coordinates
 		        TicTacToeCell sourceCell = (TicTacToeCell) event.getGestureSource();
 		        int startX = GridPane.getColumnIndex(sourceCell);
 		        int startY = GridPane.getRowIndex(sourceCell);
 		        int targetX = GridPane.getColumnIndex(this);
 		        int targetY = GridPane.getRowIndex(this);
-
+		        //System.out.println("hi");
+		        
 		        // Validate the move
 		        if (validateMove(incomingPieceType, startX, startY, targetX, targetY, chessPane)) {
 		            // Check if the target cell is occupied
@@ -183,6 +223,30 @@ public class TicTacToeCell extends Pane {
 		// Drag done on source cell
 		this.setOnDragDone(event -> {
 			System.out.println("TransferMode: " + event.getTransferMode());
+			
+//			ChessPane chessPane = (ChessPane) this.getParent();
+//		    if (chessPane != null) {
+//		        // Clear all highlights
+//		        for (int x = 0; x < chessPane.getColumnCount(); x++) {
+//		            for (int y = 0; y < chessPane.getRowCount(); y++) {
+//		                TicTacToeCell targetCell = chessPane.getCell(x, y);
+//		                targetCell.setBorder(null); // Remove border
+//		            }
+//		        }
+//		    }
+			ChessPane chessPane = (ChessPane) this.getParent();
+	        if (chessPane != null) {
+	            // Clear all highlights
+	            for (int x = 0; x < chessPane.getChessPaneWidth(); x++) {
+	                for (int y = 0; y < chessPane.getChessPaneHeight(); y++) {
+	                    TicTacToeCell targetCell = chessPane.getCell(x, y);
+	                    if (targetCell != null) {
+	                        targetCell.setBorder(null); // Remove border
+	                    }
+	                }
+	            }
+	        }
+			
 			if (event.getTransferMode() == TransferMode.MOVE) {
 				// Clear the piece only if the transfer mode is MOVE
 				clearPiece();
@@ -199,18 +263,22 @@ public class TicTacToeCell extends Pane {
 	}
 	
 	private boolean validateMove(String pieceType, int startX, int startY, int targetX, int targetY, ChessPane chessPane) {
-	    int dx = targetX - startX;
+		//System.out.println("ValidateMove");
+		int dx = targetX - startX;
+	    //System.out.println(dx);
 	    int dy = targetY - startY;
-	    boolean isEnemy = chessPane.getCell(targetX, targetY).hasPiece() &&
-	                      chessPane.getCell(targetX, targetY).getPieceType().charAt(pieceType.length() - 1) != pieceType.charAt(pieceType.length() - 1);
-
+	    //System.out.println(dy);
+	    /*boolean isEnemy = chessPane.getCell(targetX, targetY).hasPiece() &&
+	                      chessPane.getCell(targetX, targetY).getPieceType().charAt(pieceType.length() - 1) != pieceType.charAt(pieceType.length() - 1);*/
+	    //System.out.println("here");
+	    
 	    switch (pieceType) {
 	        case "pawnW":
 	            // Pawn moves one square forward (y-1) or diagonally to attack
 	            if (dx == 0 && dy == -1 && !chessPane.getCell(targetX, targetY).hasPiece()) {
 	                return true; // Forward to empty
 	            }
-	            if (Math.abs(dx) == 1 && dy == -1 && isEnemy) {
+	            if (Math.abs(dx) == 1 && dy == -1 /*&& isEnemy*/) {
 	                return true; // Diagonal attack
 	            }
 	            break;
@@ -224,6 +292,8 @@ public class TicTacToeCell extends Pane {
 
 	        case "knightW":
 	            // Knight moves in an L-shape
+	        	//System.out.println(Math.abs(dx) == 2 && Math.abs(dy) == 1);
+	        	//System.out.println(Math.abs(dx) == 1 && Math.abs(dy) == 2);
 	            if ((Math.abs(dx) == 2 && Math.abs(dy) == 1) || (Math.abs(dx) == 1 && Math.abs(dy) == 2)) {
 	                return true; // Valid knight move
 	            }
