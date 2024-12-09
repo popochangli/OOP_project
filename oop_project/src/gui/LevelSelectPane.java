@@ -73,9 +73,18 @@ public class LevelSelectPane extends VBox{
 
         ChessPane chessPane = new ChessPane(level.getWidth(), level.getHeight(), level.getPieces());
 
+        ControlPane controlPane = new ControlPane(chessPane);
+
         levelSelectPane.getChildren().add(nameText);
         levelSelectPane.getChildren().add(starsText);
         levelSelectPane.getChildren().add(chessPane);
-    }
 
+        HBox root = (HBox) levelSelectPane.getScene().getRoot();
+
+        root.getChildren().clear();
+
+        root.getChildren().add(levelSelectPane);
+
+        root.getChildren().add(controlPane);
+    }
 }

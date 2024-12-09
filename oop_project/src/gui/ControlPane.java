@@ -16,7 +16,7 @@ public class ControlPane extends VBox{
 	
 	private Text gameText;
 	private Button newGameButton;
-	private Button startButton;
+	public Button startButton;
 
 	public ChessPane getChessPane() {
 		return chessPane;
