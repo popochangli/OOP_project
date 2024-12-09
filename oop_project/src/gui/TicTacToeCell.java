@@ -3,91 +3,68 @@ package gui;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import logic.GameLogic;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 
-public class TicTacToeCell extends Pane{
-
+public class TicTacToeCell extends Pane {
 	private boolean isDrawn;
 	private Color baseColor;
-
 	private int xPosition;
 	private int yPosition;
-	private String oURL;
-	private String xURL;
-	private Button button=new Button();
+	private String oURL = "o.png";
+	private String xURL = "x.png";
+	private Button button = new Button();
 
 	public TicTacToeCell(int x, int y) {
-		super();
-		this.oURL = "o.png";
-		this.xURL = "x.png";
 		this.setxPosition(x);
 		this.setyPosition(y);
-		setBaseColor(Color.MOCCASIN);
-		initializeCellColor();
-
+		this.setBaseColor(Color.MOCCASIN);
+		this.initializeCellColor();
 		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
-					onClickHandler();
+				TicTacToeCell.this.onClickHandler();
 			}
 		});
 	}
 
-	private void onClickHandler()  {
-		if (!GameLogic.getInstance().isGameEnd() && GameLogic.getInstance().isGameStart()) {
-			;
-			if (!isDrawn) {
-				if (GameLogic.getInstance().isOturn()) {
-
-                                draw(new Image(ClassLoader.getSystemResource(oURL).toString()), Color.AQUA, 150);
-
-					GameLogic.getInstance().beginTurns(1);
-
-				} else {
-
-                                draw(new Image(ClassLoader.getSystemResource(xURL).toString()), Color.YELLOW, 150);
-
-					GameLogic.getInstance().beginTurns(0);
-				}
-				GameLogic.getInstance().drawNumber(xPosition, yPosition);
+	private void onClickHandler() {
+		if (!GameLogic.getInstance().isGameEnd() && GameLogic.getInstance().isGameStart() && !this.isDrawn) {
+			if (GameLogic.getInstance().isOturn()) {
+				this.draw(new Image(ClassLoader.getSystemResource(this.oURL).toString()), Color.AQUA, 150);
+				GameLogic.getInstance().beginTurns(1);
+			} else {
+				this.draw(new Image(ClassLoader.getSystemResource(this.xURL).toString()), Color.YELLOW, 150);
+				GameLogic.getInstance().beginTurns(0);
 			}
 
+			GameLogic.getInstance().drawNumber(this.xPosition, this.yPosition);
 		}
+
 	}
 
 	public void draw(Image image, Color backgroundColor, int size) {
-		getChildren().add(button);
-		getChildren().remove(button);
+		this.getChildren().add(this.button);
+		this.getChildren().remove(this.button);
 		BackgroundFill bgFill = new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY);
-		BackgroundFill[] bgFillA = {bgFill};
-		BackgroundSize bgSize = new BackgroundSize(size, size,false,false,false,false);
+		BackgroundFill[] bgFillA = new BackgroundFill[]{bgFill};
+		BackgroundSize bgSize = new BackgroundSize((double)size, (double)size, false, false, true, false);
 		this.setBackground(new Background(bgFillA));
-		BackgroundImage bgImg = new BackgroundImage(image, null, null, null, bgSize);
-		BackgroundImage[] bgImgA = {bgImg};
-		this.setBackground(new Background(bgFillA,bgImgA));
+		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+		BackgroundImage[] bgImgA = new BackgroundImage[]{bgImg};
+		this.setBackground(new Background(bgFillA, bgImgA));
 		this.setDrawn(true);
-
 	}
 
 	public void initializeCellColor() {
 		this.setDrawn(false);
-		setBackground(new Background(new BackgroundFill(baseColor,null,null)));
+		this.setBackground(new Background(new BackgroundFill[]{new BackgroundFill(this.baseColor, (CornerRadii)null, (Insets)null)}));
 	}
 
 	public boolean isDrawn() {
-		return isDrawn;
+		return this.isDrawn;
 	}
 
 	public void setDrawn(boolean isDrawn) {
@@ -95,7 +72,7 @@ public class TicTacToeCell extends Pane{
 	}
 
 	public int getxPosition() {
-		return xPosition;
+		return this.xPosition;
 	}
 
 	public void setxPosition(int xPosition) {
@@ -103,7 +80,7 @@ public class TicTacToeCell extends Pane{
 	}
 
 	public int getyPosition() {
-		return yPosition;
+		return this.yPosition;
 	}
 
 	public void setyPosition(int yPosition) {
@@ -111,12 +88,10 @@ public class TicTacToeCell extends Pane{
 	}
 
 	public Color getBaseColor() {
-		return baseColor;
+		return this.baseColor;
 	}
 
 	public void setBaseColor(Color baseColor) {
 		this.baseColor = baseColor;
 	}
-
-
 }

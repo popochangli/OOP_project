@@ -19,33 +19,33 @@ public class ChessPane extends GridPane{
 	private ArrayList<TicTacToeCell> allCells;
 
 	public ChessPane(int width, int height) {
-		super();
-		this.allCells = new ArrayList<TicTacToeCell>();
-		this.setHgap(8);
-		this.setVgap(8);
-		this.setPadding(new Insets(8));
+		this.setHgap(8.0);
+		this.setVgap(8.0);
+		this.setPadding(new Insets(8.0));
 		this.setAlignment(Pos.CENTER);
-		this.setPrefWidth(500);
-		this.setPrefHeight(500);
-		int cellSize = Math.min(500/width, 500/height);
-		this.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, 
-				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-		
-		for(int i = 0;i<width;i++) {
-			for(int j =0;j<height;j++) {
-				TicTacToeCell cell = new TicTacToeCell(i,j);
-				cell.setPrefSize(cellSize, cellSize);
+		this.setPrefWidth(500.0);
+		this.setPrefHeight(500.0);
+		int cellSize = Math.min(500 / width, 500 / height);
+		this.setPrefSize((double)(cellSize * width), (double)(cellSize * height));
+		this.setMaxSize((double)(cellSize * width), (double)(cellSize * height));
+		this.setMinSize((double)(cellSize * width), (double)(cellSize * height));
+		this.setBorder(new Border(new BorderStroke[]{new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)}));
+		this.setBackground(new Background(new BackgroundFill[]{new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)}));
+		this.allCells = new ArrayList<TicTacToeCell>();
+
+		for(int i = 0; i < width; ++i) {
+			for(int j = 0; j < height; ++j) {
+				TicTacToeCell cell = new TicTacToeCell(i, j);
+				cell.setPrefSize((double)cellSize, (double)cellSize);
 				cell.draw(new Image(ClassLoader.getSystemResource("piece/kingB.png").toString()), Color.GREEN, cellSize);
 				this.allCells.add(cell);
 				this.add(cell, i, j);
 			}
 		}
+
 	}
 
 	public ArrayList<TicTacToeCell> getAllCells() {
-		return allCells;
+		return this.allCells;
 	}
-	
-	
 }
