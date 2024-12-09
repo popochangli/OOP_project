@@ -22,6 +22,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		
 		HBox root = new HBox();
 		root.setPadding(new Insets(10));
 		root.setSpacing(10);
