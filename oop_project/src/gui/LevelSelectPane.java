@@ -30,7 +30,6 @@ public class LevelSelectPane extends VBox{
         levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8, new ArrayList<>(List.of("king", "queen", "rook", "knight", "bishop", "pawn", "knight", "rook", "king", "queen", "pawn", "knight", "king", "bishop", "pawn", "queen", "rook", "pawn", "king", "queen", "pawn", "knight", "pawn", "rook", "bishop", "pawn", "knight", "queen", "king", "queen", "knight", "pawn", "knight", "pawn", "king", "rook", "pawn", "bishop", "bishop", "bishop"))));
         levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn"))));
 
-        // TODO: FILL CODE HERE
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
         this.showLevels();
@@ -43,39 +42,40 @@ public class LevelSelectPane extends VBox{
         return instance;
     }
 
-    public ArrayList<Level> getLevels() {
-        return levels;
-    }
-
-//    public Button newLevelButton(){
-//        Button button = new Button("Add New Level");
-//        button.setPrefWidth(400);
-//        button.setBackground(new Background(new BackgroundFill(Color.DARKCYAN, null,null)));
-//        button.setTextFill(Color.WHITE);
-//        EventHandler<MouseEvent> gotoAddNewLevelPage = mouseEvent -> Goto.addNewLevelPage();
-//        button.setOnMouseClicked(gotoAddNewLevelPage);
-//
-//        return button;
-//    }
-
-    public void showLevels(){
-
+    public void showLevels() {
         this.getChildren().clear();
-        Background white = new Background(new BackgroundFill(Color.WHITE,null,null));
-        Background nearWhite = new Background(new BackgroundFill(Color.color(0,0,0,0.05),null,null));
+        Background white = new Background(new BackgroundFill(Color.WHITE, null, null));
+        Background nearWhite = new Background(new BackgroundFill(Color.color(0, 0, 0, 0.05), null, null));
 
-        for(int i = 0;i < levels.size();i++){
-            LevelPane newLevelPane = new LevelPane(levels.get(i));
-            if(i%2 == 0){
+        for (int i = 0; i < levels.size(); i++) {
+            LevelPane newLevelPane = new LevelPane(levels.get(i), this); // Pass the current instance here
+
+            if (i % 2 == 0) {
                 newLevelPane.setBackground(white);
-            }else {
+            } else {
                 newLevelPane.setBackground(nearWhite);
             }
 
             this.getChildren().add(newLevelPane);
         }
+    }
 
-//        this.getChildren().add(newLevelButton());
+    public static void levelPage(Level level, LevelSelectPane levelSelectPane){
+        levelSelectPane.getChildren().clear();
+        levelSelectPane.setPrefWidth(428);
+        levelSelectPane.setPrefHeight(500);
+        levelSelectPane.setPadding(new Insets(4));
+
+        Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5- level.getStars()));
+        starsText.fillProperty().set(Color.DARKRED);
+
+        Text nameText = new Text(level.getName());
+
+        ChessPane chessPane = new ChessPane(level.getWidth(), level.getHeight(), level.getPieces());
+
+        levelSelectPane.getChildren().add(nameText);
+        levelSelectPane.getChildren().add(starsText);
+        levelSelectPane.getChildren().add(chessPane);
     }
 
 }

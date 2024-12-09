@@ -13,10 +13,13 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ChessPane extends GridPane{
-	
+public class ChessPane extends GridPane {
+
 	private ArrayList<TicTacToeCell> allCells;
+	private static final Map<String, Image> imageCache = new HashMap<>();
 
 	public ChessPane(int width, int height, ArrayList<String> pieces) {
 		this.setHgap(8.0);
@@ -34,17 +37,34 @@ public class ChessPane extends GridPane{
 		this.allCells = new ArrayList<TicTacToeCell>();
 
 		int l = 0;
-		for(int i = 0; i < width; ++i) {
-			for(int j = 0; j < height; ++j) {
+		for (int i = 0; i < width; ++i) {
+			for (int j = 0; j < height; ++j) {
 				TicTacToeCell cell = new TicTacToeCell(i, j);
 				cell.setPrefSize((double)cellSize, (double)cellSize);
-				cell.draw(new Image(ClassLoader.getSystemResource("piece/"+pieces.get(l)+"B.png").toString()), Color.GREEN, cellSize);
+
+				if (l < pieces.size()) {
+					String piece = pieces.get(l);
+					String imagePath = "piece/" + piece + "B.png";
+					Image pieceImage = loadImage(imagePath);
+					if (pieceImage != null) {
+						cell.draw(pieceImage, Color.GREEN, cellSize);
+					}
+				} else {
+					cell.draw(null, Color.GREEN, cellSize);
+				}
+
 				this.allCells.add(cell);
 				this.add(cell, i, j);
 				l++;
 			}
 		}
+	}
 
+	private Image loadImage(String imagePath) {
+		if (!imageCache.containsKey(imagePath)) {
+			imageCache.put(imagePath, new Image(ClassLoader.getSystemResource(imagePath).toString()));
+		}
+		return imageCache.get(imagePath);
 	}
 
 	public ArrayList<TicTacToeCell> getAllCells() {
