@@ -5,12 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -38,16 +33,28 @@ public class ControlPane extends VBox{
 	public ControlPane(ChessPane chessPane) {
 		super();
 		this.chessPane = chessPane;
-		//To be implemented
 		setAlignment(Pos.CENTER);
 		setPrefWidth(300);
 		setSpacing(20);
 		initializeGameText();
-		initializeNewGameButton();
+		initializeSelectLevelButton();
 		inttializeTimeText();
 		initializeStartButton();
 		getChildren().addAll(gameText,newGameButton,startButton);
 
+	}
+
+	public ControlPane(){
+		super();
+		setAlignment(Pos.CENTER);
+		setPrefWidth(300);
+		setSpacing(20);
+		initializeGameText();
+		initializeSelectLevelButton();
+		inttializeTimeText();
+		initializeStartButton();
+		getChildren().addAll(gameText,newGameButton,startButton);
+		startButton.setDisable(true);
 	}
 
 	
@@ -69,14 +76,14 @@ public class ControlPane extends VBox{
 		
 	}
 	
-	private void initializeNewGameButton() {
+	private void initializeSelectLevelButton() {
 		this.newGameButton=new Button("Select Level");
 		newGameButton.setPrefWidth(100);
-		newGameButton.setOnAction(e->newGameButtonHandler());
+		newGameButton.setOnAction(e->selectLevelButtonHandler());
 		
 	}
 	private void initializeStartButton() {
-		this.startButton=new Button("Quit");
+		this.startButton=new Button("Start");
 		startButton.setPrefWidth(100);
 		startButton.setOnAction(e->newStartButtonHandler());
 	}
@@ -89,16 +96,26 @@ public class ControlPane extends VBox{
 		getChildren().addAll(tp1,tp2);
 		startButton.setDisable(true);
 	}
-	private void newGameButtonHandler() {
+	private void selectLevelButtonHandler() {
 		GameLogic.setGameStart(false);
-		getChildren().remove(tp1);
-		getChildren().remove(tp2);
-		GameLogic.getInstance().newGame();
-		updateGameText("Tic Tac Toe");
-		for(TicTacToeCell x:chessPane.getAllCells()){
-			x.initializeCellColor();
-		}
-		inttializeTimeText();
+
+		ControlPane controlPane = new ControlPane();
+		GameLogic.getInstance().setControlPane(controlPane);
+
+		LevelSelectPane levelSelectPane = LevelSelectPane.getInstance();
+
+		levelSelectPane.showLevels();
+
+		ScrollPane scrollPane = new ScrollPane(levelSelectPane);
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+		HBox parent = (HBox) getParent();
+
+		parent.getChildren().clear();
+		parent.getChildren().add(scrollPane);
+		parent.getChildren().add(controlPane);
+
 		startButton.setDisable(false);
 	}
 }

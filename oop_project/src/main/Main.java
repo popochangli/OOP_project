@@ -31,15 +31,13 @@ public class Main extends Application {
 
 		root.setPrefWidth(800);
 		GameLogic.getInstance();
-		ChessPane chessPane = new ChessPane(3,3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn")));
-		ControlPane controlPane = new ControlPane(chessPane);
-		
+		ControlPane controlPane = new ControlPane();
 		GameLogic.getInstance().setControlPane(controlPane);
 		ScrollPane scrollPane = new ScrollPane(LevelSelectPane.getInstance());
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		root.getChildren().add(scrollPane);
 
+		root.getChildren().add(scrollPane);
 		root.getChildren().add(controlPane);
 
 		Scene scene = new Scene(root);
