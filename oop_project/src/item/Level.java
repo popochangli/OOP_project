@@ -1,9 +1,11 @@
 package item;
 
+import gui.TicTacToeCell;
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Level {
     private String name;
@@ -15,14 +17,16 @@ public class Level {
 
     private int width;
 
+    private ArrayList<String> pieces;
 
-    public Level(String name, String author, int stars, int width, int height) {
+
+    public Level(String name, String author, int stars, int width, int height, ArrayList<String> pieces) {
         setName(name);
         setAuthor(author);
         setStars(stars);
-//        setImageByPath(imagePath);
         setWidth(width);
         setHeight(height);
+        setPieces(pieces);
     }
 
     public Level(String name, String author, String stars, String description) {
@@ -34,8 +38,6 @@ public class Level {
         } catch (NumberFormatException ignored) {
             setStars(0);
         }
-//        setImageByPath(imagePath);
-//        setDescription(description);
     }
 
     public String getName() {
@@ -62,30 +64,6 @@ public class Level {
         this.stars = Math.max(Math.min(stars, 5), 0);
     }
 
-//    public Image getImage() {
-//        return image;
-//    }
-
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-
-//    public void setImageByPath(String imagePath) {
-//        try {
-//            this.image = new Image(new FileInputStream(imagePath));
-//        } catch (FileNotFoundException e1) {
-//            try {
-//                this.image = new Image(new FileInputStream("res/6.png"));
-//            } catch (FileNotFoundException e2) {
-//                this.image = null;
-//            }
-//        }
-//    }
-
     public int getHeight() {
         return height;
     }
@@ -100,5 +78,13 @@ public class Level {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public ArrayList<String> getPieces() {
+        return pieces;
+    }
+
+    public void setPieces(ArrayList<String> pieces) {
+        this.pieces = pieces;
     }
 }
