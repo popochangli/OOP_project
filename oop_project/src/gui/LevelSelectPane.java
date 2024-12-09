@@ -49,6 +49,8 @@ public class LevelSelectPane extends VBox{
 
         for (int i = 0; i < levels.size(); i++) {
             LevelPane newLevelPane = new LevelPane(levels.get(i), this); // Pass the current instance here
+            newLevelPane.setPrefWidth(500); // Adjust size
+            newLevelPane.setPrefHeight(600); // Adjust size
 
             if (i % 2 == 0) {
                 newLevelPane.setBackground(white);
@@ -62,29 +64,39 @@ public class LevelSelectPane extends VBox{
 
     public static void levelPage(Level level, LevelSelectPane levelSelectPane){
         levelSelectPane.getChildren().clear();
-        levelSelectPane.setPrefWidth(428);
-        levelSelectPane.setPrefHeight(500);
-        levelSelectPane.setPadding(new Insets(4));
 
-        Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5- level.getStars()));
-        starsText.fillProperty().set(Color.DARKRED);
+        // Set the preferred width and height for the level display page
+        levelSelectPane.setPrefWidth(800);  // Adjusted width
+        levelSelectPane.setPrefHeight(600); // Adjusted height
+        levelSelectPane.setPadding(new Insets(20));
+
+        // Create text for stars and level name
+        Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5 - level.getStars()));
+        starsText.setFont(Font.font(18));
+        starsText.setFill(Color.DARKRED);
 
         Text nameText = new Text(level.getName());
+        nameText.setFont(Font.font(24)); // Larger font for the level name
+        nameText.setFill(Color.BLACK);
 
-        ChessPane chessPane = new ChessPane(level.getWidth(), level.getHeight(), level.getPieces());
+        // Create a ChessPane for the level
+        ChessPane chessPane = new ChessPane(level.getWidth(), level.getHeight(), level.getPieces(), 400); // Pass a panel size (adjust as needed)
 
-        ControlPane controlPane = new ControlPane(chessPane);
-
+        // Add the name and stars text, and chess board to the levelSelectPane
         levelSelectPane.getChildren().add(nameText);
         levelSelectPane.getChildren().add(starsText);
         levelSelectPane.getChildren().add(chessPane);
 
-        HBox root = (HBox) levelSelectPane.getScene().getRoot();
+        // Control Pane (e.g., back to level selection or start game)
+        ControlPane controlPane = new ControlPane(chessPane);
+        levelSelectPane.getChildren().add(controlPane); // Add control buttons below the chess pane
 
+        // Adjust layout of root container
+        HBox root = (HBox) levelSelectPane.getScene().getRoot();
         root.getChildren().clear();
 
         root.getChildren().add(levelSelectPane);
-
         root.getChildren().add(controlPane);
     }
+
 }

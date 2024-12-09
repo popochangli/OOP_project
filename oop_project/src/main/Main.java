@@ -21,15 +21,12 @@ import java.util.List;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-
-
 		HBox root = new HBox();
 		root.setPadding(new Insets(10));
 		root.setSpacing(10);
-		root.setPrefHeight(500);
+		root.setPrefWidth(1000);  // Adjust window size
+		root.setPrefHeight(600);  // Adjust window size
 
-		root.setPrefWidth(800);
 		GameLogic.getInstance();
 		ControlPane controlPane = new ControlPane();
 		GameLogic.getInstance().setControlPane(controlPane);
@@ -41,18 +38,11 @@ public class Main extends Application {
 		root.getChildren().add(controlPane);
 
 		Scene scene = new Scene(root);
-		
+
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Tic-Tac-Toe");
 		primaryStage.show();
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(WindowEvent e) {
-				Platform.exit();
-				System.exit(0);
-			}
-		});
-
+		primaryStage.setOnCloseRequest(e -> Platform.exit());
 	}
 
 

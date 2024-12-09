@@ -29,19 +29,18 @@ public class ControlPane extends VBox{
 	private ChessPane chessPane;
 	private TimerPane tp1;
 	private TimerPane tp2;
-	
+
 	public ControlPane(ChessPane chessPane) {
 		super();
 		this.chessPane = chessPane;
 		setAlignment(Pos.CENTER);
-		setPrefWidth(300);
+		setPrefWidth(400);  // Adjust width
 		setSpacing(20);
 		initializeGameText();
 		initializeSelectLevelButton();
 		inttializeTimeText();
 		initializeStartButton();
-		getChildren().addAll(gameText,newGameButton,startButton);
-
+		getChildren().addAll(gameText, newGameButton, startButton);
 	}
 
 	public ControlPane(){
