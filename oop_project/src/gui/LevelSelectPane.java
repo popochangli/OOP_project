@@ -29,6 +29,7 @@ public class LevelSelectPane extends VBox{
         levels.add(new Level("Hairy Panner and the professor's stove", "J.K. Kidding", 2, 1, 2, new ArrayList<>(List.of("king", "rook"))));
         levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8, new ArrayList<>(List.of("king", "queen", "rook", "knight", "bishop", "pawn", "knight", "rook", "king", "queen", "pawn", "knight", "king", "bishop", "pawn", "queen", "rook", "pawn", "king", "queen", "pawn", "knight", "pawn", "rook", "bishop", "pawn", "knight", "queen", "king", "queen", "knight", "pawn", "knight", "pawn", "king", "rook", "pawn", "bishop", "bishop", "bishop"))));
         levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn"))));
+        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 3, 4, 4, new ArrayList<>(List.of("wall", "knight", "knight", "pawn", "knight", "knight", "knight", "knight", "knight", "wall", "knight", "knight", "knight", "knight", "knight", "wall"))));
 
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
