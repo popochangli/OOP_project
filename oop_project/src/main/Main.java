@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import logic.GameLogic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -28,7 +31,7 @@ public class Main extends Application {
 
 		root.setPrefWidth(800);
 		GameLogic.getInstance();
-		ChessPane chessPane = new ChessPane(3,3);
+		ChessPane chessPane = new ChessPane(3,3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn")));
 		ControlPane controlPane = new ControlPane(chessPane);
 		
 		GameLogic.getInstance().setControlPane(controlPane);

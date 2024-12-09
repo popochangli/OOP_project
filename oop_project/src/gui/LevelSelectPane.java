@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LevelSelectPane extends VBox{
 
@@ -25,11 +26,9 @@ public class LevelSelectPane extends VBox{
 
     private LevelSelectPane() {
         levels = new ArrayList<>();
-        levels.add(new Level("Hairy Panner and the professor's stove", "J.K. Kidding", 2, 1, 2));
-        levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8));
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3));
-        levels.add(new Level("Mercy Johndaughter and the Cloud Thief", "Nick Nornand", 5, 5, 5));
-        levels.add(new Level("Mercy Johndaughter and the Land of Heroes", "Nick Nornand", 4, 2, 8));
+        levels.add(new Level("Hairy Panner and the professor's stove", "J.K. Kidding", 2, 1, 2, new ArrayList<>(List.of("king", "rook"))));
+        levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8, new ArrayList<>(List.of("king", "queen", "rook", "knight", "bishop", "pawn", "knight", "rook", "king", "queen", "pawn", "knight", "king", "bishop", "pawn", "queen", "rook", "pawn", "king", "queen", "pawn", "knight", "pawn", "rook", "bishop", "pawn", "knight", "queen", "king", "queen", "knight", "pawn", "knight", "pawn", "king", "rook", "pawn", "bishop", "bishop", "bishop"))));
+        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn"))));
 
         // TODO: FILL CODE HERE
         this.setFillWidth(true);

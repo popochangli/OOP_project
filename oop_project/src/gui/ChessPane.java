@@ -18,7 +18,7 @@ public class ChessPane extends GridPane{
 	
 	private ArrayList<TicTacToeCell> allCells;
 
-	public ChessPane(int width, int height) {
+	public ChessPane(int width, int height, ArrayList<String> pieces) {
 		this.setHgap(8.0);
 		this.setVgap(8.0);
 		this.setPadding(new Insets(8.0));
@@ -33,13 +33,16 @@ public class ChessPane extends GridPane{
 		this.setBackground(new Background(new BackgroundFill[]{new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)}));
 		this.allCells = new ArrayList<TicTacToeCell>();
 
+		int l = 0;
 		for(int i = 0; i < width; ++i) {
 			for(int j = 0; j < height; ++j) {
 				TicTacToeCell cell = new TicTacToeCell(i, j);
 				cell.setPrefSize((double)cellSize, (double)cellSize);
-				cell.draw(new Image(ClassLoader.getSystemResource("piece/kingB.png").toString()), Color.GREEN, cellSize);
+				cell.draw(new Image(ClassLoader.getSystemResource("piece/"+pieces.get(l)+"B.png").toString()), Color.GREEN, cellSize);
 				this.allCells.add(cell);
 				this.add(cell, i, j);
+				System.out.println(l);
+				l++;
 			}
 		}
 
