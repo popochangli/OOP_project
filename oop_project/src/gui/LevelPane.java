@@ -21,7 +21,7 @@ public class LevelPane extends GridPane {
         this.setPrefHeight(500);
         this.setHgap(8);
         this.setPadding(new Insets(4));
-        
+
         Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5 - level.getStars()));
         starsText.setFont(Font.font(14));
         starsText.fillProperty().set(Color.DARKRED);
