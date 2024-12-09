@@ -6,6 +6,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -15,6 +17,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import logic.GameLogic;
+import piece.King;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 
@@ -68,18 +71,43 @@ public class TicTacToeCell extends Pane{
 	}
 
 	public void draw(Image image, Color backgroundColor, int size) {
-		getChildren().add(button);
-		getChildren().remove(button);
-		BackgroundFill bgFill = new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY);
-		BackgroundFill[] bgFillA = {bgFill};
-		BackgroundSize bgSize = new BackgroundSize(size, size,false,false,false,false);
-		this.setBackground(new Background(bgFillA));
-		BackgroundImage bgImg = new BackgroundImage(image, null, null, null, bgSize);
-		BackgroundImage[] bgImgA = {bgImg};
-		this.setBackground(new Background(bgFillA,bgImgA));
-		this.setDrawn(true);
+		//public void draw(King king, Color backgroundColor, int size) {
+			
+			//Image image = king.getImage();
+			
+			getChildren().add(button);
+			getChildren().remove(button);
+			
+			BackgroundFill bgFill = new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY);
+			BackgroundFill[] bgFillA = {bgFill};
+			
+			//BackgroundSize bgSize = new BackgroundSize(size, size,false,false,false,false);
+			BackgroundSize bgSize = new BackgroundSize(
+			        size,        // Width of the background
+			        size,        // Height of the background
+			        false,       // Width is not relative
+			        false,       // Height is not relative
+			        true,        // Contain within the cell's bounds
+			        false        // Do not repeat
+			    );
+			
+			this.setBackground(new Background(bgFillA));
+			
+			//BackgroundImage bgImg = new BackgroundImage(image, null, null, null, bgSize);
+			BackgroundImage bgImg = new BackgroundImage(
+			        image,
+			        BackgroundRepeat.NO_REPEAT,   // No repetition
+			        BackgroundRepeat.NO_REPEAT,   // No repetition
+			        BackgroundPosition.CENTER,    // Center the image
+			        bgSize                         // Use configured size
+			    );
 
-	}
+			BackgroundImage[] bgImgA = {bgImg};
+			
+			this.setBackground(new Background(bgFillA,bgImgA));
+			this.setDrawn(true);
+
+		}
 
 	public void initializeCellColor() {
 		this.setDrawn(false);

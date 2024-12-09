@@ -12,6 +12,8 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+//import piece.King;
+
 import java.util.ArrayList;
 
 public class ChessPane extends GridPane{
@@ -27,7 +29,15 @@ public class ChessPane extends GridPane{
 		this.setAlignment(Pos.CENTER);
 		this.setPrefWidth(500);
 		this.setPrefHeight(500);
+		
+		
 		int cellSize = Math.min(500/width, 500/height);
+		
+		// Set grid size to match the cells
+	    this.setPrefSize(cellSize * width, cellSize * height);
+	    this.setMaxSize(cellSize * width, cellSize * height);
+	    this.setMinSize(cellSize * width, cellSize * height);
+		
 		this.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -36,7 +46,11 @@ public class ChessPane extends GridPane{
 			for(int j =0;j<height;j++) {
 				TicTacToeCell cell = new TicTacToeCell(i,j);
 				cell.setPrefSize(cellSize, cellSize);
+				
 				cell.draw(new Image(ClassLoader.getSystemResource("piece/kingB.png").toString()), Color.GREEN, cellSize);
+				//King king = new King();
+				//cell.draw(king, Color.GREEN, cellSize);
+				
 				this.allCells.add(cell);
 				this.add(cell, i, j);
 			}
