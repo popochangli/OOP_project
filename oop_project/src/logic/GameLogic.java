@@ -293,6 +293,6 @@ public class GameLogic {
 		GameLogic.timerPane[pl] = timerPane;
 	}
 
-
+	
 }
 

@@ -20,8 +20,11 @@ public class ChessPane extends GridPane {
 
 	private ArrayList<TicTacToeCell> allCells;
 	private static final Map<String, Image> imageCache = new HashMap<>();
-
+	private int width;
+	
 	public ChessPane(int width, int height, ArrayList<String> pieces) {
+		this.width = width;
+		
 		this.setHgap(8.0);
 		this.setVgap(8.0);
 		this.setPadding(new Insets(8.0));
@@ -29,41 +32,40 @@ public class ChessPane extends GridPane {
 		this.setPrefWidth(500.0);
 		this.setPrefHeight(500.0);
 		int cellSize = Math.min(500 / width, 500 / height);
-		this.setPrefSize((double)(cellSize * width), (double)(cellSize * height));
-		this.setMaxSize((double)(cellSize * width), (double)(cellSize * height));
-		this.setMinSize((double)(cellSize * width), (double)(cellSize * height));
-		this.setBorder(new Border(new BorderStroke[]{new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)}));
-		this.setBackground(new Background(new BackgroundFill[]{new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)}));
+		this.setPrefSize((double) (cellSize * width), (double) (cellSize * height));
+		this.setMaxSize((double) (cellSize * width), (double) (cellSize * height));
+		this.setMinSize((double) (cellSize * width), (double) (cellSize * height));
+		this.setBorder(new Border(new BorderStroke[] {
+				new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT) }));
+		this.setBackground(new Background(
+				new BackgroundFill[] { new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY) }));
 		this.allCells = new ArrayList<TicTacToeCell>();
 
 		int l = 0;
 		for (int i = 0; i < width; ++i) {
-		    for (int j = 0; j < height; ++j) {
-		        TicTacToeCell cell = new TicTacToeCell(i, j);
-		        cell.setPrefSize((double) cellSize, (double) cellSize);
+			for (int j = 0; j < height; ++j) {
+				TicTacToeCell cell = new TicTacToeCell(i, j);
+				cell.setPrefSize((double) cellSize, (double) cellSize);
 
-		        if (l < pieces.size()) {
-		            String piece = pieces.get(l);
-		            String imagePath = (i + j) % 2 == 0 
-		                ? "piece/" + piece + "B.png" 
-		                : "piece/" + piece + "W.png";
-		            
-		            Image pieceImage = loadImage(imagePath);
+				if (l < pieces.size()) {
+					String piece = pieces.get(l);
+					String imagePath = (i + j) % 2 == 0 ? "piece/" + piece + "B.png" : "piece/" + piece + "W.png";
 
-		            if (pieceImage != null) {
-		                cell.draw(pieceImage, (i + j) % 2 == 0 ? piece + "B" : piece + "W");
-		            } else {
-		                cell.draw(null, null);
-		            }
-		        }
+					Image pieceImage = loadImage(imagePath);
 
-		        this.allCells.add(cell);
-		        this.add(cell, i, j);
-		        l++;
-		    }
+					if (pieceImage != null) {
+						cell.draw(pieceImage, (i + j) % 2 == 0 ? piece + "B" : piece + "W");
+					} else {
+						cell.draw(null, null);
+					}
+				}
+
+				this.allCells.add(cell);
+				this.add(cell, i, j);
+				l++;
+			}
 		}
 
-	
 	}
 
 	private Image loadImage(String imagePath) {
@@ -76,4 +78,9 @@ public class ChessPane extends GridPane {
 	public ArrayList<TicTacToeCell> getAllCells() {
 		return this.allCells;
 	}
+	
+	public TicTacToeCell getCell(int x, int y) {
+	    return allCells.get(y * width + x);
+	}
+
 }
