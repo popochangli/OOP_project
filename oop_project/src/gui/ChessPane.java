@@ -41,7 +41,6 @@ public class ChessPane extends GridPane{
 				cell.draw(new Image(ClassLoader.getSystemResource("piece/"+pieces.get(l)+"B.png").toString()), Color.GREEN, cellSize);
 				this.allCells.add(cell);
 				this.add(cell, i, j);
-				System.out.println(l);
 				l++;
 			}
 		}
