@@ -1,10 +1,14 @@
 package logic;
 
+import java.io.File;
+
 import gui.ChessCell;
 import gui.ChessPane;
 import gui.ControlPane;
 import gui.TimerPane;
 import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameLogic {
 
@@ -115,8 +119,14 @@ public class GameLogic {
         System.out.println(numBlack);
         System.out.println("hiiiiiiiiiiii" + endgame);
         if (endgame) {
+        	String musicFile = "win.mp3";     // For example
 
-            k.updateGameText("Win แล้ว");
+    		Media sound = new Media(new File(musicFile).toURI().toString());
+    		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    		//mediaPlayer.
+    		mediaPlayer.play();
+    		
+            k.updateGameText("Win Laew!");
 
             setGameEnd();
             gameStart = false;
