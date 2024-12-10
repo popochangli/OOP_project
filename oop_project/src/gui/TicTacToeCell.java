@@ -23,38 +23,27 @@ public class TicTacToeCell extends Pane {
 		initializeDragAndDrop();
 	}
 
+	
 	public void draw(Piece piece) {
-		this.piece = piece;
-		this.isOccupied = true;
+        this.piece = piece;
+        this.isOccupied = true;
 
-		double cellWidth = this.getPrefWidth();
-		double cellHeight = this.getPrefHeight();
+        if (piece != null && piece.getImage() != null) {
+            double cellWidth = this.getPrefWidth();
+            double cellHeight = this.getPrefHeight();
 
-		// Dynamically generate the image path
-		String imagePath = "/piece/" + piece.getClass().getSimpleName().toLowerCase() + piece.getTeam() + ".png";
-		Image pieceImage;
-
-		try {
-			pieceImage = new Image(getClass().getResourceAsStream(imagePath));
-		} catch (Exception e) {
-			System.out.println("Failed to load image from path: " + imagePath);
-			pieceImage = null; // Set to null or fallback to a default image if required
-		}
-
-		if (pieceImage != null) {
-			BackgroundImage bgImg = new BackgroundImage(pieceImage, BackgroundRepeat.NO_REPEAT,
-					BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-					new BackgroundSize(cellWidth, cellHeight, false, false, false, false));
-			this.setBackground(new Background(
-					new BackgroundFill[] { new BackgroundFill(cellColor, CornerRadii.EMPTY, Insets.EMPTY) },
-					new BackgroundImage[] { bgImg }));
-			System.out.println("Updated cell image to: " + piece.getClass().getSimpleName() + " (" + piece.getTeam()
-					+ ") from path: " + imagePath);
-		} else {
-			System.out.println("Could not update cell image, no valid image found.");
-			this.setBackground(new Background(new BackgroundFill(cellColor, CornerRadii.EMPTY, Insets.EMPTY)));
-		}
-	}
+            BackgroundImage bgImg = new BackgroundImage(piece.getImage(), BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                    new BackgroundSize(cellWidth, cellHeight, false, false, false, false));
+            this.setBackground(new Background(
+                    new BackgroundFill[] { new BackgroundFill(cellColor, CornerRadii.EMPTY, Insets.EMPTY) },
+                    new BackgroundImage[] { bgImg }));
+            System.out.println("Updated cell image to: " + piece.getClass().getSimpleName() + " (" + piece.getTeam() + ")");
+        } else {
+            this.setBackground(new Background(new BackgroundFill(cellColor, CornerRadii.EMPTY, Insets.EMPTY)));
+            System.out.println("Could not update cell image, no valid image found.");
+        }
+    }
 
 	public void clearPiece() {
 		this.piece = null;
