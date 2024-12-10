@@ -31,9 +31,9 @@ public class PieceFactory {
 	}
 
 	private static Image loadImage(String pieceType, String team) {
-		String imagePath = "/piece/" + pieceType + team + ".png";
+		String imagePath = "piece/" + pieceType + team + ".png";
 		try {
-			return new Image(PieceFactory.class.getResourceAsStream(imagePath));
+			return new Image(ClassLoader.getSystemResource(imagePath).toString());
 		} catch (Exception e) {
 			System.err.println("Failed to load image: " + imagePath);
 			return null;

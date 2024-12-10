@@ -245,7 +245,7 @@ public class ChessCell extends Pane {
 		this.hasWall = hasWall;
 		if (hasWall) {
 			// Set the wall image or background
-			Image wallImage = new Image(getClass().getResourceAsStream("/piece/wall.png"));
+			Image wallImage = new Image(ClassLoader.getSystemResourceAsStream("piece/wall.png"));
 
 			BackgroundImage bgImage = new BackgroundImage(wallImage, BackgroundRepeat.NO_REPEAT,
 					BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,

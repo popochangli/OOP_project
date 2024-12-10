@@ -1,7 +1,5 @@
 package logic;
 
-import java.io.File;
-
 import gui.ChessCell;
 import gui.ChessPane;
 import gui.ControlPane;
@@ -9,6 +7,7 @@ import gui.TimerPane;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import main.Main;
 
 public class GameLogic {
 
@@ -45,7 +44,6 @@ public class GameLogic {
     public static void setGameStart(boolean gameStart) {
         GameLogic.gameStart = gameStart;
     }
-
 
     public void startCountDownTimer(int pl) {
 
@@ -85,7 +83,6 @@ public class GameLogic {
     }
 
     public void newGame() {
-        setGameEnd();
         gameStart = false;
         playerTimer = new Timer[]{new Timer(0, 0, 1)};
         timerPane = new TimerPane[1];
@@ -93,10 +90,6 @@ public class GameLogic {
         timerPane[0].setTimer(playerTimer[0]);
         startCountDownTimer(0);
     }
-
-    public static void setGameEnd() {
-    }
-
 
     public void setControlPane() {
     }
@@ -119,16 +112,12 @@ public class GameLogic {
         System.out.println(numBlack);
         System.out.println("hiiiiiiiiiiii" + endgame);
         if (endgame) {
-        	String musicFile = "win.mp3";     // For example
-
-    		Media sound = new Media(new File(musicFile).toURI().toString());
-    		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-    		//mediaPlayer.
-    		mediaPlayer.play();
-    		
+            MediaPlayer winSound;
             k.updateGameText("Win Laew!");
-
-            setGameEnd();
+            winSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("win.wav").toString()));
+            winSound.setCycleCount(1);
+            winSound.setVolume(3);
+            winSound.play();
             gameStart = false;
         }
     }

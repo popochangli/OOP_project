@@ -20,7 +20,6 @@ public class LevelSelectPane extends VBox {
 	private LevelSelectPane() {
 		levels = new ArrayList<>();
 
-        levels.add(new Level("Ez la", 0, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
 		levels.add(new Level("Ez la", 0, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
 
         levels.add(new Level("Full of crap", 2, 5, 8, new ArrayList<>(List.of("kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", "pawnW", "bishopB", "bishopW", "bishopW"))));
