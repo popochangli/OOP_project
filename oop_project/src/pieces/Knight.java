@@ -3,7 +3,7 @@ package pieces;
 import gui.ChessPane;
 import javafx.scene.image.Image;
 
-public class Knight extends Piece {
+public class Knight extends Piece implements Moveable{
 
     public Knight(String team, Image image) {
         super(team, image);

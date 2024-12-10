@@ -4,7 +4,7 @@ import gui.ChessPane;
 import gui.TicTacToeCell;
 import javafx.scene.image.Image;
 
-public class Pawn extends Piece {
+public class Pawn extends Piece implements Moveable{
 
     public Pawn(String team, Image image) {
         super(team, image);

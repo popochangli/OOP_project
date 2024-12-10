@@ -11,8 +11,6 @@ public class Level {
     private String name;
     private String author;
     private int stars;
-//    private Image image;
-
     private int height;
 
     private int width;
