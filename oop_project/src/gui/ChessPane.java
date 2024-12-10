@@ -49,7 +49,10 @@ public class ChessPane extends GridPane {
                     if ("wall".equals(pieceType)) {
                         // Configure the cell as a wall
                         cell.setWall(true);
-                    } else {
+                    } else if ("blank".equals(pieceType)){
+                        cell.clearPiece();
+                    }
+                    else {
                         // Assign regular pieces
                         Piece piece = PieceFactory.createPiece(pieceType);
                         if (piece != null) {

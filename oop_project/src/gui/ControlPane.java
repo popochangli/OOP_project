@@ -14,6 +14,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.FontWeight;
+import javafx.scene.paint.Color;
 import logic.GameLogic;
 
 public class ControlPane extends VBox {
@@ -61,17 +63,12 @@ public class ControlPane extends VBox {
     }
 
     private void initializeGameText() {
-        gameText = new Text("Chess");
+
+        gameText = new Text("Chess Puzzle");
         gameText.setFont(Font.font("Impact", FontWeight.BOLD, 50)); // Bold font with a larger size
 
-     // Apply a solid brown color
+        // Apply a solid brown color
         gameText.setFill(Color.BROWN); // Use JavaFX's built-in brown color
-
-        // Add a shadow effect for depth
-        //gameText.setEffect(new DropShadow(10, Color.BLACK)); // Shadow effect
-
-        // Add an outline for better contrast
-        //gameText.setStyle("-fx-stroke: black; -fx-stroke-width: 1;"); //Adds a shadow effect
     }
 
 
@@ -93,14 +90,15 @@ public class ControlPane extends VBox {
         newGameButton.setOnAction(e -> selectLevelButtonHandler());
         newGameButton.setStyle(
                 "-fx-background-color: linear-gradient(to right, #506432, #7AA23E);" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 14px;" +
-                "-fx-font-weight: bold;" +
-                "-fx-background-radius: 10;" +
-                "-fx-border-color: #7AA23E;" +
-                "-fx-border-radius: 10;" +
-                "-fx-border-width: 2;"
-          );
+
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-color: #7AA23E;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-border-width: 2;"
+        );
     }
 
     private void initializeStartButton() {
@@ -109,18 +107,19 @@ public class ControlPane extends VBox {
         startButton.setOnAction(e -> newStartButtonHandler());
         startButton.setStyle(
                 "-fx-background-color: linear-gradient(to right, #C14C32, #F18E3F);" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 14px;" +
-                "-fx-font-weight: bold;" +
-                "-fx-background-radius: 10;" +
-                "-fx-border-color: #F18E3F;" +
-                "-fx-border-radius: 10;" +
-                "-fx-border-width: 2;"
-            );
+
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-color: #F18E3F;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-border-width: 2;"
+        );
     }
 
     private void newStartButtonHandler() {
-        updateGameText("O Turn");
+        updateGameText("Moveeeeeeee");
         GameLogic.setGameStart(true);
         inttializeTimeText();
         GameLogic.getInstance().startCountDownTimer(0);
@@ -132,7 +131,7 @@ public class ControlPane extends VBox {
         GameLogic.setGameStart(false);
 
         ControlPane controlPane = new ControlPane();
-        GameLogic.getInstance().setControlPane(controlPane);
+        GameLogic.getInstance().setControlPane();
 
         LevelSelectPane levelSelectPane = LevelSelectPane.getInstance();
 
