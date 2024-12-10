@@ -3,8 +3,6 @@ package gui;
 import item.Level;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,15 +20,23 @@ public class LevelSelectPane extends VBox {
     private LevelSelectPane() {
         levels = new ArrayList<>();
 
-        levels.add(new Level("Hairy Panner and the professor's stove", 2, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
+        levels.add(new Level("Ez la", 0, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
 
-        levels.add(new Level("Hairy Panner and the Kitchen of secrets", 3, 5, 8, new ArrayList<>(List.of("kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", "pawnW", "bishopB", "bishopW", "bishopW"))));
+        levels.add(new Level("Full of crap", 2, 5, 8, new ArrayList<>(List.of("kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", "pawnW", "bishopB", "bishopW", "bishopW"))));
 
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", 1, 3, 3, new ArrayList<>(List.of("kingW", "pawnB", "rookW", "queenB", "knightW", "pawnB", "knightW", "bishopB", "pawnW"))));
+        levels.add(new Level("One will do", 1, 3, 3, new ArrayList<>(List.of("kingW", "pawnB", "rookW", "queenB", "knightW", "pawnB", "knightW", "bishopB", "pawnW"))));
 
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", 3, 4, 4, new ArrayList<>(List.of("wall", "knightB", "knightW", "pawnB", "knightW", "knightB", "knightW", "knightB", "knightW", "wall", "knightW", "knightB", "knightW", "knightB", "knightW", "wall"))));
+        levels.add(new Level("Horse Frenzy", 3, 4, 4, new ArrayList<>(List.of("wall", "knightB", "knightB", "knightW", "knightB", "knightB", "wall", "knightB", "knightB", "knightB", "knightB", "knightB", "pawnB", "knightB", "knightB", "wall"))));
 
-        levels.add(new Level("chess01", 2, 4, 4, new ArrayList<>(List.of("bishopB", "blank", "wall", "knightB", "blank", "pawnB", "rookW", "pawnB", "rookB", "queenB", "bishopB", "blank", "pawnB", "blank", "wall", "pawnB"))));
+        levels.add(new Level("Rook Escape", 2, 4, 4, new ArrayList<>(List.of("bishopB", "blank", "wall", "knightB", "blank", "pawnB", "rookW", "pawnB", "rookB", "queenB", "bishopB", "blank", "pawnB", "blank", "wall", "pawnB"))));
+
+        levels.add(new Level("Kind of threes", 4, 6, 6, new ArrayList<>(List.of("rookB", "wall", "wall", "blank", "blank", "pawnB", "rookB", "wall", "wall", "blank", "blank", "pawnB", "rookB", "blank", "wall", "bishopB", "blank", "pawnW", "blank", "blank", "blank", "bishopB", "blank", "wall", "knightB", "knightB", "blank", "bishopB", "blank", "wall", "blank", "knightB", "blank", "blank", "blank", "wall"))));
+
+        levels.add(new Level("Corner the rook", 2, 4, 4, new ArrayList<>(List.of("wall", "pawnB", "bishopB", "rookW", "rookB", "wall", "kingB", "pawnB", "blank", "bishopB", "kingB", "knightB", "queenB", "bishopB", "blank", "wall"))));
+
+        levels.add(new Level("King and Queen", 3, 6, 6, new ArrayList<>(List.of("bishopB", "bishopB", "wall", "wall", "bishopB", "knightB", "wall", "pawnB", "pawnB", "wall", "wall", "rookB", "wall", "wall", "pawnB", "pawnB", "wall", "wall", "knightB", "wall", "blank", "blank", "kingB", "wall", "rookB", "wall", "rookB", "bishopB", "queenB", "wall", "knightB", "wall", "knightB", "pawnB", "knightB", "wall"))));
+
+        levels.add(new Level("Queen them ALL", 5, 6, 6, new ArrayList<>(List.of("wall", "blank", "blank", "pawnB", "pawnB", "wall", "wall", "rookB", "knightB", "rookB", "knightB", "blank", "blank", "wall", "wall", "wall", "wall", "pawnB", "rookB", "wall", "knightB", "queenW", "pawnB", "wall", "rookB", "wall", "bishopB", "bishopB", "knightB", "blank", "bishopB", "bishopB", "wall", "wall", "pawnB", "blank"))));
 
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
@@ -84,8 +90,6 @@ public class LevelSelectPane extends VBox {
 
     public void showLevels() {
         this.getChildren().clear();
-        Background white = new Background(new BackgroundFill(Color.WHITE, null, null));
-        Background nearWhite = new Background(new BackgroundFill(Color.color(0, 0, 0, 0.05), null, null));
 
         for (int i = 0; i < levels.size(); i++) {
             LevelPane newLevelPane = new LevelPane(levels.get(i), this); // Pass the current instance here
