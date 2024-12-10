@@ -64,7 +64,7 @@ public class LevelPane extends GridPane {
         this.setHgap(8);
         this.setVgap(8);
         this.setPadding(new Insets(8));
-
+        //this.setStyle("-fx-background-color: #695140;");
         // Create level name and stars text
         Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5 - level.getStars()));
         starsText.setFont(Font.font(14));  // Font size for stars
