@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Level {
     private String name;
-    private String author;
     private int stars;
     private int height;
 
@@ -13,24 +12,13 @@ public class Level {
     private ArrayList<String> pieces;
 
 
-    public Level(String name, String author, int stars, int width, int height, ArrayList<String> pieces) {
+    public Level(String name, int stars, int width, int height, ArrayList<String> pieces) {
         setName(name);
-        setAuthor(author);
+        setAuthor();
         setStars(stars);
         setWidth(width);
         setHeight(height);
         setPieces(pieces);
-    }
-
-    public Level(String name, String author, String stars, String description) {
-        setName(name);
-        setAuthor(author);
-        try {
-            int rating = Integer.parseInt(stars);
-            setStars(rating);
-        } catch (NumberFormatException ignored) {
-            setStars(0);
-        }
     }
 
     public String getName() {
@@ -41,12 +29,7 @@ public class Level {
         this.name = name.isBlank() ? "Untitled" : name;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author.isBlank() ? "Anonymous" : author;
+    public void setAuthor() {
     }
 
     public int getStars() {
