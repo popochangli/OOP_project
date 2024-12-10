@@ -3,8 +3,6 @@ package gui;
 import item.Level;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -92,8 +90,6 @@ public class LevelSelectPane extends VBox {
 
     public void showLevels() {
         this.getChildren().clear();
-        Background white = new Background(new BackgroundFill(Color.WHITE, null, null));
-        Background nearWhite = new Background(new BackgroundFill(Color.color(0, 0, 0, 0.05), null, null));
 
         for (int i = 0; i < levels.size(); i++) {
             LevelPane newLevelPane = new LevelPane(levels.get(i), this); // Pass the current instance here
