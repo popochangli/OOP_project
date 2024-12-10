@@ -44,6 +44,7 @@ public class LevelSelectPane extends VBox {
         return instance;
     }
 
+
     public static void levelPage(Level level, LevelSelectPane levelSelectPane) {
         levelSelectPane.getChildren().clear();
 
@@ -52,7 +53,7 @@ public class LevelSelectPane extends VBox {
         levelSelectPane.setPrefHeight(600); // Adjusted height
         levelSelectPane.setPadding(new Insets(20));
         levelSelectPane.setStyle("-fx-background-color: #d0c1ac;");
-
+<
         // Create text for stars and level name
         Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5 - level.getStars()));
         starsText.setFont(Font.font(18));

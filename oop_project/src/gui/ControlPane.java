@@ -1,11 +1,18 @@
 package gui;
 
+import java.awt.MultipleGradientPaint.CycleMethod;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.FontWeight;
 import javafx.scene.paint.Color;
@@ -56,12 +63,15 @@ public class ControlPane extends VBox {
     }
 
     private void initializeGameText() {
+
         gameText = new Text("Chess Puzzle");
         gameText.setFont(Font.font("Impact", FontWeight.BOLD, 50)); // Bold font with a larger size
 
         // Apply a solid brown color
         gameText.setFill(Color.BROWN); // Use JavaFX's built-in brown color
     }
+
+
 
     private void inttializeTimeText() {
         tp1 = new TimerPane(0);
@@ -80,6 +90,7 @@ public class ControlPane extends VBox {
         newGameButton.setOnAction(e -> selectLevelButtonHandler());
         newGameButton.setStyle(
                 "-fx-background-color: linear-gradient(to right, #506432, #7AA23E);" +
+
                         "-fx-text-fill: white;" +
                         "-fx-font-size: 14px;" +
                         "-fx-font-weight: bold;" +
@@ -96,6 +107,7 @@ public class ControlPane extends VBox {
         startButton.setOnAction(e -> newStartButtonHandler());
         startButton.setStyle(
                 "-fx-background-color: linear-gradient(to right, #C14C32, #F18E3F);" +
+
                         "-fx-text-fill: white;" +
                         "-fx-font-size: 14px;" +
                         "-fx-font-weight: bold;" +

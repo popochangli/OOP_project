@@ -96,6 +96,9 @@ public class Main extends Application {
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
+		
+		
+		
 		root.getChildren().add(scrollPane);
 		root.getChildren().add(controlPane);
 
