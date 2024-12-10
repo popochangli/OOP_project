@@ -69,6 +69,8 @@
 //}
 package main;
 
+import java.io.File;
+
 import gui.ControlPane;
 import gui.LevelSelectPane;
 import javafx.application.Application;
@@ -77,17 +79,26 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import logic.GameLogic;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		String musicFile = "background.mp3";     // For example
+
+		
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+		
 		HBox root = new HBox();
 		root.setPadding(new Insets(10));
 		root.setSpacing(10);
-		root.setPrefWidth(850);  // Adjust window size
-		root.setPrefHeight(600);  // Adjust window size
+		root.setPrefWidth(850); // Adjust window size
+		root.setPrefHeight(600); // Adjust window size
 
 		GameLogic.getInstance();
 		ControlPane controlPane = new ControlPane();
@@ -96,9 +107,6 @@ public class Main extends Application {
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		
-		
-		
 		root.getChildren().add(scrollPane);
 		root.getChildren().add(controlPane);
 
@@ -109,7 +117,6 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setOnCloseRequest(e -> Platform.exit());
 	}
-
 
 	public static void main(String[] args) {
 		launch(args);
