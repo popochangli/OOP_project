@@ -39,8 +39,14 @@ public class ChessPane extends GridPane {
         this.setPadding(new Insets(8.0));
         this.setAlignment(Pos.CENTER);
 
-        int cellSize = (int) panelSize / Math.max(width, height);
-        this.setPrefSize(cellSize * width, cellSize * height);
+        //manual merge edit
+//        int cellSize = (int) panelSize / Math.max(width, height);
+//        this.setPrefSize(cellSize * width, cellSize * height);
+     		this.setPrefSize(panelSize, panelSize);
+     		int cellSize = Math.min((int) panelSize / width, (int) panelSize / height);
+     		this.setPrefSize(cellSize * width, cellSize * height);
+     		this.setMaxSize(cellSize * width, cellSize * height);
+     		this.setMinSize(cellSize * width, cellSize * height);
 
         this.allCells = new ArrayList<>();
         this.chessPaneWidth = width;

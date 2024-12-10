@@ -6,8 +6,10 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import logic.GameLogic;
 import pieces.Piece;
 import pieces.PieceFactory;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 
 public class TicTacToeCell extends Pane {
@@ -120,6 +122,13 @@ public class TicTacToeCell extends Pane {
 					// Validate and process the move
 					if (validateMove(movingPiece, startX, startY, targetX, targetY, chessPane)) {
 						success = processMove(movingPiece); // Process the move only if valid
+						
+				        //manual merge edit
+						GameLogic.getPlayerTimer(0).incrementMove(1); // Assuming player 0 for simplicity
+						Platform.runLater(() -> {
+							GameLogic.getInstance().getTimerPane()[0].setMove(GameLogic.getPlayerTimer(0).getMove());
+						});
+						
 					} else {
 						System.out.println("Invalid move for " + movingPiece.getClass().getSimpleName());
 					}
