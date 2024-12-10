@@ -76,7 +76,7 @@ public class GameLogic {
 					}
 				});
 
-				plTimer.decrementTimer(2);
+				plTimer.incrementTimer(2);
 			}
 		}
 		else {
@@ -95,7 +95,7 @@ public class GameLogic {
 					}
 				});
 
-				plTimer.decrementTimer(2);
+				plTimer.incrementTimer(2);
 
 			}
 		}
@@ -107,7 +107,7 @@ public class GameLogic {
 			return;
 		}
 	}
-	private void runWinningPattern()  {
+	private void runWinningPattern()   {
 		/*
 		 * FIX CODES
 		 * The following code will make the winning cells change to green background,but it will freeze
@@ -141,9 +141,9 @@ public class GameLogic {
 					@Override
 					public void run() {
 						if (isOTurn) {
-							controlPane.getTicTacToePane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("o.png").toString()), Color.GREEN);
+							//controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("kingB.png").toString()), Color.GREEN, 150);
 						} else {
-							controlPane.getTicTacToePane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("x.png").toString()), Color.GREEN);
+							//controlPane.getChessPane().getAllCells().get(x).draw(new Image(ClassLoader.getSystemResource("x.png").toString()), Color.GREEN, 150);
 						}
 					}
 				});
@@ -293,6 +293,6 @@ public class GameLogic {
 		GameLogic.timerPane[pl] = timerPane;
 	}
 
-
+	
 }
 

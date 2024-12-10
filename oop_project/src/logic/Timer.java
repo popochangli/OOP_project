@@ -15,19 +15,19 @@ public class Timer {
         this.isStop = true;
     }
 
-    public void decrementTimer(int amount) { //Decrease the timer by specified amount (milliseconds)
+    public void incrementTimer(int amount) { //Decrease the timer by specified amount (milliseconds)
 
         if(isTimerEmpty()) {return;}
 
-        ms -= amount;
+        ms += amount;
 
-        while(ms < 0) {
+        while(ms > 100) {
             if(isTimerEmpty()) {ms = 0; return;}
-            ms+=100;
-            seconds -= 1;
-            while(seconds < 0) {
-                seconds+=60;
-                minute -=1;
+            ms-=100;
+            seconds += 1;
+            while(seconds > 60) {
+                seconds-=60;
+                minute +=1;
             }
         }
 
