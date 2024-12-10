@@ -26,7 +26,6 @@ public abstract class Piece {
 
 	public abstract boolean validateMove(int startX, int startY, int targetX, int targetY, ChessPane chessPane);
 	
-	//Might wrong
 	protected boolean isPathClear(int startX, int startY, int targetX, int targetY, ChessPane chessPane) {
         int dx = Integer.compare(targetX, startX);
         int dy = Integer.compare(targetY, startY);
