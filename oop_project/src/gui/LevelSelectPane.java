@@ -157,10 +157,10 @@ public class LevelSelectPane extends VBox{
         	    4, 
         	    4, 
         	    new ArrayList<>(List.of(
-        	        "wallW", "knightB", "knightW", "pawnB", "knightW",
-        	        "knightB", "knightW", "knightB", "knightW", "wallW",
+        	        "wall", "knightB", "knightW", "pawnB", "knightW",
+        	        "knightB", "knightW", "knightB", "knightW", "wall",
         	        "knightW", "knightB", "knightW", "knightB", "knightW", 
-        	        "wallW"
+        	        "wall"
         	    ))
         	));
         

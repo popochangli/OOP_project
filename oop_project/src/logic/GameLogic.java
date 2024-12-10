@@ -342,7 +342,7 @@ public class GameLogic {
 		GameLogic.getPlayerTimer(0).incrementMove(-GameLogic.getPlayerTimer(0).getMove());
 		plTimer.setStop(false);
 		if (pl == 0) {
-			while (gameStart && isOTurn) {
+			while (gameStart) {
 				Thread.sleep(20);
 					/*
 			 * FIX CODE: There is JavaFX commands inside the code below
@@ -510,6 +510,7 @@ public class GameLogic {
 			endgame = true;
 		}
 		System.out.println(numBlack);
+		System.out.println("hiiiiiiiiiiii" + endgame);
 		if (endgame) {
 
 			if (isOTurn) controlPane.updateGameText("O wins!");
@@ -520,13 +521,6 @@ public class GameLogic {
 
 			setGameEnd(true);
 			gameStart = false;
-		} else if (isGameEnd) {
-			if (isOTurn && count != 9) controlPane.updateGameText("O wins!");
-			else controlPane.updateGameText("X wins!");
-		} else {
-			setOturn(!isOTurn);
-			if (isOTurn) controlPane.updateGameText("O Turn");
-			else controlPane.updateGameText("X Turn");
 		}
 	}
 
