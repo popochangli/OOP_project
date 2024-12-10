@@ -63,8 +63,10 @@ public class TicTacToeCell extends Pane {
 
 	private void initializeDragAndDrop() {
 		// Drag detected on source cell
-
 		this.setOnDragDetected(event -> {
+
+			if(!GameLogic.getInstance().isGameStart()) return;
+			
 			if (piece == null || !"W".equals(piece.getTeam())) {
 				System.out.println("Only white pieces can move.");
 				event.consume();
