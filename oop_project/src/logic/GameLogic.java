@@ -12,9 +12,6 @@ public class GameLogic {
     private static boolean gameStart = false;
     private static Timer[] playerTimer = new Timer[]{new Timer(0, 0, 0)};
     private static TimerPane[] timerPane;
-    private static boolean isGameEnd;
-    private static boolean isOTurn;
-    private static ControlPane controlPane;
 
     private GameLogic() {
         playerTimer = new Timer[]{new Timer(0, 0, 0)};
@@ -84,8 +81,7 @@ public class GameLogic {
     }
 
     public void newGame() {
-        setGameEnd(false);
-        this.setOturn(true);
+        setGameEnd();
         gameStart = false;
         playerTimer = new Timer[]{new Timer(0, 0, 1)};
         timerPane = new TimerPane[1];
@@ -94,21 +90,11 @@ public class GameLogic {
         startCountDownTimer(0);
     }
 
-    public boolean isGameEnd() {
-        return isGameEnd;
-    }
-
-    public static void setGameEnd(boolean gameEnd) {
-        isGameEnd = gameEnd;
+    public static void setGameEnd() {
     }
 
 
-    public void setOturn(boolean oTurn) {
-        isOTurn = oTurn;
-    }
-
-    public void setControlPane(ControlPane controlPane) {
-        GameLogic.controlPane = controlPane;
+    public void setControlPane() {
     }
 
     public void checkGameEnd() {
@@ -130,11 +116,9 @@ public class GameLogic {
         System.out.println("hiiiiiiiiiiii" + endgame);
         if (endgame) {
 
-            if (isOTurn) controlPane.updateGameText("O wins!");
-            else controlPane.updateGameText("X wins!");
+            k.updateGameText("Win แล้ว");
 
-
-            setGameEnd(true);
+            setGameEnd();
             gameStart = false;
         }
     }
