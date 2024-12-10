@@ -243,6 +243,21 @@ public class ChessPane extends GridPane {
 	    return allCells.get(index);
 	}
 
-	
+	public boolean checkWin() {
+	    for (int x = 0; x < getChessPaneWidth(); x++) {
+	        for (int y = 0; y < getChessPaneHeight(); y++) {
+	            TicTacToeCell cell = getCell(x, y);
+	            if (cell != null && cell.hasPiece() && cell.getPieceType().endsWith("B")) {
+	                return false; // A black piece is still on the board
+	            }
+	        }
+	    }
+	    return true; // No black pieces left
+	}
+
+	public void announceWinner() {
+	    System.out.println("Congratulations! You have won the game.");
+	}
+
 
 }

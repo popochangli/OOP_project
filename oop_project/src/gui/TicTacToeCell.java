@@ -184,7 +184,14 @@ public class TicTacToeCell extends Pane {
 			System.out.println("Drop succeeded: Moved piece to empty cell.");
 			draw(pieceImage, pieceType);
 		}
+		
+		ChessPane chessPane = (ChessPane) getParent();
+	    if (chessPane.checkWin()) {
+	        chessPane.announceWinner();
+	    }
 	}
+	
+	
 
 	private boolean validateMove(String pieceType, int startX, int startY, int targetX, int targetY,
 			ChessPane chessPane) {
