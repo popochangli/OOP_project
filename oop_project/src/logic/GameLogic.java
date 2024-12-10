@@ -130,9 +130,7 @@ public class GameLogic {
         System.out.println("hiiiiiiiiiiii" + endgame);
         if (endgame) {
 
-            if (isOTurn) controlPane.updateGameText("O wins!");
-            else controlPane.updateGameText("X wins!");
-
+            k.updateGameText("Win แล้ว");
 
             setGameEnd(true);
             gameStart = false;
