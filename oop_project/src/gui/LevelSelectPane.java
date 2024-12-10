@@ -36,6 +36,10 @@ public class LevelSelectPane extends VBox {
 
         levels.add(new Level("Corner the rook", 2, 4, 4, new ArrayList<>(List.of("wall", "pawnB", "bishopB", "rookW", "rookB", "wall", "kingB", "pawnB", "blank", "bishopB", "kingB", "knightB", "queenB", "bishopB", "blank", "wall"))));
 
+        levels.add(new Level("King and Queen", 3, 6, 6, new ArrayList<>(List.of("bishopB", "bishopB", "wall", "wall", "bishopB", "knightB", "wall", "pawnB", "pawnB", "wall", "wall", "rookB", "wall", "wall", "pawnB", "pawnB", "wall", "wall", "knightB", "wall", "blank", "blank", "kingB", "wall", "rookB", "wall", "rookB", "bishopB", "queenB", "wall", "knightB", "wall", "knightB", "pawnB", "knightB", "wall"))));
+
+        levels.add(new Level("Queen them ALL", 5, 6, 6, new ArrayList<>(List.of("wall", "blank", "blank", "pawnB", "pawnB", "wall", "wall", "rookB", "knightB", "rookB", "knightB", "blank", "blank", "wall", "wall", "wall", "wall", "pawnB", "rookB", "wall", "knightB", "queenW", "pawnB", "wall", "rookB", "wall", "bishopB", "bishopB", "knightB", "blank", "bishopB", "bishopB", "wall", "wall", "pawnB", "blank"))));
+
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
         this.showLevels();
