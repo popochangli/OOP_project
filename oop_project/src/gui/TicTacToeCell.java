@@ -226,5 +226,25 @@ public class TicTacToeCell extends Pane {
 			ChessPane chessPane) {
 		return movingPiece != null && movingPiece.validateMove(startX, startY, targetX, targetY, chessPane);
 	}
+	
+	//add wall edit
+	
+	private boolean hasWall = false;
+
+    public boolean hasWall() {
+        return hasWall;
+    }
+
+    public void setWall(boolean hasWall) {
+        this.hasWall = hasWall;
+        if (hasWall) {
+            // Set the wall image or background
+            Image wallImage = new Image(getClass().getResourceAsStream("/piece/wall.png"));
+            BackgroundImage bgImage = new BackgroundImage(wallImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            this.setBackground(new Background(bgImage));
+        } else {
+            this.setBackground(null); // Remove background if no wall
+        }
+    }
 
 }

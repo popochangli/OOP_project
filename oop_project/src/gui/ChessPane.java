@@ -60,10 +60,24 @@ public class ChessPane extends GridPane {
                 // Assign pieces based on input
                 int index = i * height + j;
                 if (index < pieces.size()) {
+                	
+                	
                     String pieceType = pieces.get(index);
-                    Piece piece = PieceFactory.createPiece(pieceType);
-                    if (piece != null) {
-                        cell.draw(piece);
+                    //add wall edit
+                    
+//                    Piece piece = PieceFactory.createPiece(pieceType);
+//                    if (piece != null) {
+//                        cell.draw(piece);
+//                    }
+                    if ("wall".equals(pieceType)) {
+                        // Configure the cell as a wall
+                        cell.setWall(true);
+                    } else {
+                        // Assign regular pieces
+                        Piece piece = PieceFactory.createPiece(pieceType);
+                        if (piece != null) {
+                            cell.draw(piece);
+                        }
                     }
                 }
 
