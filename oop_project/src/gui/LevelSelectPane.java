@@ -87,7 +87,7 @@ public class LevelSelectPane extends VBox {
         for (int i = 0; i < levels.size(); i++) {
             LevelPane newLevelPane = new LevelPane(levels.get(i), this); // Pass the current instance here
             newLevelPane.setPrefWidth(500); // Adjust size
-            newLevelPane.setPrefHeight(600); // Adjust size
+            newLevelPane.setPrefHeight(300); // Adjust size
 
             if (i % 2 == 0) {
                 newLevelPane.setBackground(white);

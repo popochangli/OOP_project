@@ -106,6 +106,13 @@ public class ChessCell extends Pane {
                 int targetX = GridPane.getColumnIndex(this);
                 int targetY = GridPane.getRowIndex(this);
 
+                if (startX == targetX && startY == targetY) {
+                    System.out.println("Piece is not moved. Source and target locations are the same.");
+                    event.setDropCompleted(false); // Mark the drop as not completed
+                    event.consume();
+                    return;
+                }
+
                 Piece movingPiece = PieceFactory.createPiece(db.getString());
 
                 if (movingPiece != null) {
