@@ -169,9 +169,8 @@ public class ControlPane extends VBox{
 
 	private void inttializeTimeText(){
 		tp1 = new TimerPane(0);
-		tp2 = new TimerPane(1);
+		tp1.setMove(0);
 		GameLogic.setTimerPane(0, tp1);
-		GameLogic.setTimerPane(1, tp2);
 	}
 	
 	public void updateGameText(String text) {
@@ -194,9 +193,9 @@ public class ControlPane extends VBox{
 	private void newStartButtonHandler() {
 		updateGameText("O Turn");
 		GameLogic.setGameStart(true);
+		inttializeTimeText();
 		GameLogic.getInstance().startCountDownTimer(0);
-		GameLogic.getInstance().startCountDownTimer(1);
-		getChildren().addAll(tp1,tp2);
+		getChildren().addAll(tp1);
 		startButton.setDisable(true);
 	}
 	private void selectLevelButtonHandler() {

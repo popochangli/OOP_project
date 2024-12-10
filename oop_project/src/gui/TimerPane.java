@@ -15,6 +15,10 @@ public class TimerPane extends VBox{
     private Text header;
     private Text timer;
 
+    private Text move;
+
+    private Text moveHead;
+
     private int pl;
 
     public TimerPane(int pl) {
@@ -24,16 +28,21 @@ public class TimerPane extends VBox{
         this.setPrefHeight(80);
         this.setAlignment(Pos.CENTER);
 
-        if(pl==0){header = new Text("O"+" Timer");}
-        else{header = new Text("X"+" Timer");}
+        if(pl==0){header = new Text( "Timer");}
 
         timer = new Text("00:00:00");
 
         header.setFont(new Font(25));
         timer.setFont(new Font(20));
 
-        this.getChildren().add(header);
-        this.getChildren().add(timer);
+        moveHead = new Text(("Move Count"));
+
+        move = new Text("0");
+
+        moveHead.setFont(new Font(25));
+        move.setFont(new Font(20));
+
+        this.getChildren().addAll(moveHead, move, header, timer);
 
 
         setTimer(GameLogic.getPlayerTimer(pl));
@@ -45,9 +54,11 @@ public class TimerPane extends VBox{
     }
 
     public void setTimer(Timer t) {
-        this.getChildren().remove(timer);
-        this.getChildren().add(timer);
         timer.setText(t.toString());
+    }
+
+    public void setMove(int t) {
+        move.setText(String.valueOf(t));
     }
 
 

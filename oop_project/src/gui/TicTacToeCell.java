@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
@@ -106,6 +107,11 @@ public class TicTacToeCell extends Pane {
 				if (validateMove(db.getString(), startX, startY, targetX, targetY, chessPane)) {
 					processMove(db.getImage(), db.getString());
 					success = true;
+
+					GameLogic.getPlayerTimer(0).incrementMove(1); // Assuming player 0 for simplicity
+					Platform.runLater(() -> {
+						GameLogic.getInstance().getTimerPane()[0].setMove(GameLogic.getPlayerTimer(0).getMove());
+					});
 				} else {
 					System.out.println("Invalid move for " + db.getString());
 				}

@@ -7,6 +7,8 @@ public class Timer {
 
     private boolean isStop;
 
+    private int move = 0;
+
     public Timer(int m, int s, int ms) {
         minute = m;
         seconds = s;
@@ -33,6 +35,10 @@ public class Timer {
 
     }
 
+    public void incrementMove(int amount) {
+        move += amount;
+    }
+
     public boolean isTimerEmpty() {
         return minute<=0 && seconds<=0 && ms<=0;
     }
@@ -47,5 +53,13 @@ public class Timer {
 
     public void setStop(boolean isStop) {
         this.isStop = isStop;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int k) {
+        move = k;
     }
 }

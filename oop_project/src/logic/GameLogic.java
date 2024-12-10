@@ -10,7 +10,7 @@ public class GameLogic {
 
 	private static GameLogic instance = null;
 
-    public boolean isGameStart() {
+	public boolean isGameStart() {
 		return gameStart;
 	}
 
@@ -18,31 +18,31 @@ public class GameLogic {
 		GameLogic.gameStart = gameStart;
 	}
 
-	private static boolean gameStart=false;
+	private static boolean gameStart = false;
 
-    private static Timer[] playerTimer= new Timer[] {new Timer(1, 0, 0), new Timer(1, 0, 0)};
+	private static Timer[] playerTimer = new Timer[]{new Timer(0, 0, 0)};
 
-    private static TimerPane[] timerPane;
+	private static TimerPane[] timerPane;
 
-    private static boolean isGameEnd;
+	private static boolean isGameEnd;
 	private static boolean isOTurn;
 	private static ControlPane controlPane;
 	private final int[][] board = new int[3][3];
-	private final int[] score =new int[3];
-	private int count=0;
+	private final int[] score = new int[3];
+	private int count = 0;
 
 	private GameLogic() {
-		playerTimer = new Timer[] {new Timer(5, 0, 0), new Timer(5, 0, 0)};
-        timerPane = new TimerPane[2];
+		playerTimer = new Timer[]{new Timer(0, 0, 0)};
+		timerPane = new TimerPane[1];
 		this.newGame();
 	}
-
 
 
 	public void beginTurns(int pl) {
 		startCountDownTimer(pl);
 	}
-	public  void startCountDownTimer(int pl) {
+
+	public void startCountDownTimer(int pl) {
 			/*
 		 * FIX CODES
 		 * The following code will make the winning cells change to green background,but it will freeze
@@ -52,17 +52,22 @@ public class GameLogic {
 		Thread timerThread = new Thread(() -> {
 			try {
 				runCountDownTimer(pl);
-			} catch (InterruptedException e) {};
+			} catch (InterruptedException e) {
+			}
+			;
 
 		});
 
 		timerThread.start();
 	}
+
 	public void runCountDownTimer(int pl) throws InterruptedException {
-		Timer plTimer = playerTimer[pl];
+		Timer plTimer = new Timer(0, 0, 1);
+		plTimer.setMove(0);
+		GameLogic.getPlayerTimer(0).incrementMove(-GameLogic.getPlayerTimer(0).getMove());
 		plTimer.setStop(false);
-		if(pl==0) {
-			while (gameStart&&isOTurn && !plTimer.isTimerEmpty()) {
+		if (pl == 0) {
+			while (gameStart && isOTurn) {
 				Thread.sleep(20);
 					/*
 			 * FIX CODE: There is JavaFX commands inside the code below
@@ -79,35 +84,37 @@ public class GameLogic {
 				plTimer.incrementTimer(2);
 			}
 		}
-		else {
-			while (gameStart&&!isOTurn&&!plTimer.isTimerEmpty()) {
-				Thread.sleep(20);
-				/*
-				 *	/*
-			 * FIX CODE: There is JavaFX commands inside the code below
-				Add something to the code below to make JavaFX commands can
-				function in the thread
-				 */
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						timerPane[pl].setTimer(plTimer);
-					}
-				});
-
-				plTimer.incrementTimer(2);
-
-			}
-		}
+//		else {
+//			while (gameStart&&!isOTurn&&!plTimer.isTimerEmpty()) {
+//				Thread.sleep(20);
+//				/*
+//				 *	/*
+//			 * FIX CODE: There is JavaFX commands inside the code below
+//				Add something to the code below to make JavaFX commands can
+//				function in the thread
+//				 */
+//				Platform.runLater(new Runnable() {
+//					@Override
+//					public void run() {
+//						timerPane[pl].setTimer(plTimer);
+//					}
+//				});
+//
+//				plTimer.incrementTimer(2);
+//
+//			}
+//		}
 		plTimer.setStop(true);
 
-		if(plTimer.isTimerEmpty()) {
-			if(isOTurn)controlPane.updateGameText("X wins!");
-			else controlPane.updateGameText("O wins!");
-			return;
-		}
+//		if(plTimer.isTimerEmpty()) {
+//			if(isOTurn)controlPane.updateGameText("X wins!");
+//			else controlPane.updateGameText("O wins!");
+//			return;
+//		}
 	}
-	private void runWinningPattern()   {
+
+
+	private void runWinningPattern() {
 		/*
 		 * FIX CODES
 		 * The following code will make the winning cells change to green background,but it will freeze
@@ -119,7 +126,9 @@ public class GameLogic {
 		Thread winningPatternThread = new Thread(() -> {
 			try {
 				winningPattern(score);
-			} catch (InterruptedException e) {};
+			} catch (InterruptedException e) {
+			}
+			;
 		});
 
 		winningPatternThread.start();
@@ -135,7 +144,7 @@ public class GameLogic {
 				function in the thread
 			 */
 			Thread.sleep(200);
-			if(isGameEnd) {
+			if (isGameEnd) {
 				Platform.runLater(new Runnable() {
 
 					@Override
@@ -158,7 +167,7 @@ public class GameLogic {
 	public void drawNumber(int x, int y) {
 		count++;
 		int num = -1;
-		if(isOTurn)num = 1;
+		if (isOTurn) num = 1;
 		else num = 2;
 		board[x][y] = num;
 		checkGameEnd();
@@ -167,18 +176,15 @@ public class GameLogic {
 	public void newGame() {
 		setGameEnd(false);
 		this.setOturn(true);
-		gameStart=false;
-		count=0;
-		playerTimer = new Timer[] {new Timer(1, 0, 0), new Timer(1, 0, 0)};
-		timerPane = new TimerPane[2];
-		timerPane[0]=new TimerPane(0);
-		timerPane[1]=new TimerPane(1);
+		gameStart = false;
+		count = 0;
+		playerTimer = new Timer[]{new Timer(0, 0, 1)};
+		timerPane = new TimerPane[1];
+		timerPane[0] = new TimerPane(0);
 		timerPane[0].setTimer(playerTimer[0]);
-		timerPane[1].setTimer(playerTimer[1]);
 		startCountDownTimer(0);
-		startCountDownTimer(1);
-		for(int i = 0;i<3;i++) {
-			for(int j = 0;j<3;j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				board[i][j] = 0;
 			}
 
@@ -188,18 +194,21 @@ public class GameLogic {
 	public boolean isGameEnd() {
 		return isGameEnd;
 	}
+
 	public static void setGameEnd(boolean gameEnd) {
 		isGameEnd = gameEnd;
 	}
+
 	public boolean isOturn() {
 		return isOTurn;
 	}
+
 	public void setOturn(boolean oTurn) {
 		isOTurn = oTurn;
 	}
 
 	public static GameLogic getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new GameLogic();
 		}
 		return instance;
@@ -210,8 +219,7 @@ public class GameLogic {
 	}
 
 
-
-	private void checkGameEnd()  {
+	private void checkGameEnd() {
 		int num = -1;
 		if (isOTurn) num = 1;
 		else num = 2;
@@ -257,14 +265,14 @@ public class GameLogic {
 			score[2] = 6;
 			endgame = true;
 		}
-		if(count==9){
+		if (count == 9) {
 			setGameEnd(true);
 			gameStart = false;
 		}
 
 		if (endgame) {
 
-			if(isOTurn)controlPane.updateGameText("O wins!");
+			if (isOTurn) controlPane.updateGameText("O wins!");
 			else controlPane.updateGameText("X wins!");
 
 
@@ -272,12 +280,10 @@ public class GameLogic {
 
 			setGameEnd(true);
 			gameStart = false;
-		}
-		else if(isGameEnd) {
-			if(isOTurn&&count!=9)controlPane.updateGameText("O wins!");
+		} else if (isGameEnd) {
+			if (isOTurn && count != 9) controlPane.updateGameText("O wins!");
 			else controlPane.updateGameText("X wins!");
-		}
-		else {
+		} else {
 			setOturn(!isOTurn);
 			if (isOTurn) controlPane.updateGameText("O Turn");
 			else controlPane.updateGameText("X Turn");
@@ -293,6 +299,10 @@ public class GameLogic {
 		GameLogic.timerPane[pl] = timerPane;
 	}
 
-	
+
+	public TimerPane[] getTimerPane() {
+		return timerPane;
+	}
+
 }
 
