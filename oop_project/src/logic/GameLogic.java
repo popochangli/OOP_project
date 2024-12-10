@@ -273,7 +273,9 @@
 
 package logic;
 
+import gui.ChessPane;
 import gui.ControlPane;
+import gui.TicTacToeCell;
 import gui.TimerPane;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -492,57 +494,22 @@ public class GameLogic {
 	}
 
 
-	private void checkGameEnd() {
-		int num = -1;
-		if (isOTurn) num = 1;
-		else num = 2;
+	public void checkGameEnd() {
 		boolean endgame = false;
-		if (board[0][0] == num && board[0][1] == num && board[0][2] == num) {
-			score[0] = 0;
-			score[1] = 1;
-			score[2] = 2;
-			endgame = true;
-		} else if (board[1][0] == num && board[1][1] == num && board[1][2] == num) {
-			score[0] = 3;
-			score[1] = 4;
-			score[2] = 5;
-			endgame = true;
-		} else if (board[2][0] == num && board[2][1] == num && board[2][2] == num) {
-			score[0] = 6;
-			score[1] = 7;
-			score[2] = 8;
-			endgame = true;
-		} else if (board[0][0] == num && board[1][0] == num && board[2][0] == num) {
-			score[0] = 0;
-			score[1] = 3;
-			score[2] = 6;
-			endgame = true;
-		} else if (board[0][1] == num && board[1][1] == num && board[2][1] == num) {
-			score[0] = 1;
-			score[1] = 4;
-			score[2] = 7;
-			endgame = true;
-		} else if (board[0][2] == num && board[1][2] == num && board[2][2] == num) {
-			score[0] = 2;
-			score[1] = 5;
-			score[2] = 8;
-			endgame = true;
-		} else if (board[0][0] == num && board[1][1] == num && board[2][2] == num) {
-			score[0] = 0;
-			score[1] = 4;
-			score[2] = 8;
-			endgame = true;
-		} else if (board[2][0] == num && board[1][1] == num && board[0][2] == num) {
-			score[0] = 2;
-			score[1] = 4;
-			score[2] = 6;
+		ControlPane k = (ControlPane) timerPane[0].getParent();
+		System.out.println(k.getChessPane());
+		System.out.println(k);
+		ChessPane chessPane = k.getChessPane();
+		int numBlack = 0;
+		for(TicTacToeCell x : chessPane.getAllCells()){
+			if(x.hasPiece() && "B".equals(x.getPiece().getTeam())){
+				numBlack++;
+			}
+		}
+		if(numBlack == 0){
 			endgame = true;
 		}
-		if (count == 9) {
-			setGameEnd(true);
-			gameStart = false;
-		}
-
+		System.out.println(numBlack);
 		if (endgame) {
 
 			if (isOTurn) controlPane.updateGameText("O wins!");
