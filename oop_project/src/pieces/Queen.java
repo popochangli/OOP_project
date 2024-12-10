@@ -15,7 +15,10 @@ public class Queen extends Piece implements Moveable{
         int dy = Math.abs(targetY - startY);
 
         // Queens move in straight lines or diagonally
-        return (dx == 0 || dy == 0 || dx == dy) && isPathClear(startX, startY, targetX, targetY, chessPane);
+        if( (dx == 0 || dy == 0 || dx == dy) && isPathClear(startX, startY, targetX, targetY, chessPane)) {
+        	return canLandOn(targetX, targetY, chessPane);
+        }
+        return false;
     }
 
 

@@ -107,11 +107,63 @@ public class LevelSelectPane extends VBox{
 
     private LevelSelectPane() {
         levels = new ArrayList<>();
-        levels.add(new Level("Hairy Panner and the professor's stove", "J.K. Kidding", 2, 1, 2, new ArrayList<>(List.of("king", "rook"))));
-        levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8, new ArrayList<>(List.of("king", "queen", "rook", "knight", "bishop", "pawn", "knight", "rook", "king", "queen", "pawn", "knight", "king", "bishop", "pawn", "queen", "rook", "pawn", "king", "queen", "pawn", "knight", "pawn", "rook", "bishop", "pawn", "knight", "queen", "king", "queen", "knight", "pawn", "knight", "pawn", "king", "rook", "pawn", "bishop", "bishop", "bishop"))));
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn"))));
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 3, 4, 4, new ArrayList<>(List.of("wall", "knight", "knight", "pawn", "knight", "knight", "knight", "knight", "knight", "wall", "knight", "knight", "knight", "knight", "knight", "wall"))));
+//        levels.add(new Level("Hairy Panner and the professor's stove", "J.K. Kidding", 2, 1, 2, new ArrayList<>(List.of("king", "rook"))));
+//        levels.add(new Level("Hairy Panner and the Kitchen of secrets", "J.K. Kidding", 3, 5, 8, new ArrayList<>(List.of("king", "queen", "rook", "knight", "bishop", "pawn", "knight", "rook", "king", "queen", "pawn", "knight", "king", "bishop", "pawn", "queen", "rook", "pawn", "king", "queen", "pawn", "knight", "pawn", "rook", "bishop", "pawn", "knight", "queen", "king", "queen", "knight", "pawn", "knight", "pawn", "king", "rook", "pawn", "bishop", "bishop", "bishop"))));
+//        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 1, 3, 3, new ArrayList<>(List.of("king", "pawn", "rook", "queen", "knight", "pawn", "knight", "bishop", "pawn"))));
+//        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", "J.K. Kidding", 3, 4, 4, new ArrayList<>(List.of("wall", "knight", "knight", "pawn", "knight", "knight", "knight", "knight", "knight", "wall", "knight", "knight", "knight", "knight", "knight", "wall"))));
 
+        levels.add(new Level(
+        	    "Hairy Panner and the professor's stove", 
+        	    "J.K. Kidding", 
+        	    2, 
+        	    1, 
+        	    2, 
+        	    new ArrayList<>(List.of("kingW", "rookB"))
+        	));
+
+        	levels.add(new Level(
+        	    "Hairy Panner and the Kitchen of secrets", 
+        	    "J.K. Kidding", 
+        	    3, 
+        	    5, 
+        	    8, 
+        	    new ArrayList<>(List.of(
+        	        "kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", 
+        	        "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", 
+        	        "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", 
+        	        "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", 
+        	        "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", 
+        	        "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", 
+        	        "pawnW", "bishopB", "bishopW", "bishopW"
+        	    ))
+        	));
+
+        	levels.add(new Level(
+        	    "Hairy Panner and the Chef of AsKarnBan", 
+        	    "J.K. Kidding", 
+        	    1, 
+        	    3, 
+        	    3, 
+        	    new ArrayList<>(List.of(
+        	        "kingW", "pawnB", "rookW", "queenB", "knightW", "pawnB", 
+        	        "knightW", "bishopB", "pawnW"
+        	    ))
+        	));
+
+        	levels.add(new Level(
+        	    "Hairy Panner and the Chef of AsKarnBan", 
+        	    "J.K. Kidding", 
+        	    3, 
+        	    4, 
+        	    4, 
+        	    new ArrayList<>(List.of(
+        	        "wall", "knightB", "knightW", "pawnB", "knightW",
+        	        "knightB", "knightW", "knightB", "knightW", "wall",
+        	        "knightW", "knightB", "knightW", "knightB", "knightW", 
+        	        "wall"
+        	    ))
+        	));
+        
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
         this.showLevels();

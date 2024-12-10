@@ -15,6 +15,9 @@ public class King extends Piece implements Moveable{
         int dy = Math.abs(targetY - startY);
 
         // Kings move one square in any direction
-        return dx <= 1 && dy <= 1;
+        if( dx <= 1 && dy <= 1) {
+        	return canLandOn(targetX, targetY, chessPane);
+        }
+        return false;
     }
 }

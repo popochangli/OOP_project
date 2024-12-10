@@ -1,3 +1,56 @@
+        //manual merge edit
+
+//package logic;
+//
+//public class Timer {
+//    private int minute;
+//    private int seconds;
+//    private int ms;
+//
+//    private boolean isStop;
+//
+//    public Timer(int m, int s, int ms) {
+//        minute = m;
+//        seconds = s;
+//        this.ms = ms;
+//
+//        this.isStop = true;
+//    }
+//
+//    public void incrementTimer(int amount) { //Decrease the timer by specified amount (milliseconds)
+//
+//        if(isTimerEmpty()) {return;}
+//
+//        ms += amount;
+//
+//        while(ms > 100) {
+//            if(isTimerEmpty()) {ms = 0; return;}
+//            ms-=100;
+//            seconds += 1;
+//            while(seconds > 60) {
+//                seconds-=60;
+//                minute +=1;
+//            }
+//        }
+//
+//    }
+//
+//    public boolean isTimerEmpty() {
+//        return minute<=0 && seconds<=0 && ms<=0;
+//    }
+//
+//    public String toString() {
+//        return String.format("%02d:%02d:%02d",minute, seconds, ms);
+//    }
+//
+//    public boolean isStop() {
+//        return isStop;
+//    }
+//
+//    public void setStop(boolean isStop) {
+//        this.isStop = isStop;
+//    }
+//}
 package logic;
 
 public class Timer {
@@ -6,6 +59,8 @@ public class Timer {
     private int ms;
 
     private boolean isStop;
+
+    private int move = 0;
 
     public Timer(int m, int s, int ms) {
         minute = m;
@@ -33,6 +88,10 @@ public class Timer {
 
     }
 
+    public void incrementMove(int amount) {
+        move += amount;
+    }
+
     public boolean isTimerEmpty() {
         return minute<=0 && seconds<=0 && ms<=0;
     }
@@ -47,5 +106,13 @@ public class Timer {
 
     public void setStop(boolean isStop) {
         this.isStop = isStop;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int k) {
+        move = k;
     }
 }

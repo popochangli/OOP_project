@@ -15,7 +15,11 @@ public class Bishop extends Piece implements Moveable{
         int dy = Math.abs(targetY - startY);
 
         // Bishops move diagonally
-        return dx == dy && isPathClear(startX, startY, targetX, targetY, chessPane);
+        //return dx == dy && isPathClear(startX, startY, targetX, targetY, chessPane);
+        if(dx == dy && isPathClear(startX, startY, targetX, targetY, chessPane)){
+        	return canLandOn(targetX, targetY, chessPane);
+        }
+        return false;
     }
 
     
