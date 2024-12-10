@@ -51,6 +51,7 @@ public class LevelSelectPane extends VBox {
         levelSelectPane.setPrefWidth(800);  // Adjusted width
         levelSelectPane.setPrefHeight(600); // Adjusted height
         levelSelectPane.setPadding(new Insets(20));
+        levelSelectPane.setStyle("-fx-background-color: #d0c1ac;");
 
         // Create text for stars and level name
         Text starsText = new Text("★".repeat(level.getStars()) + "☆".repeat(5 - level.getStars()));
@@ -92,9 +93,9 @@ public class LevelSelectPane extends VBox {
             newLevelPane.setPrefHeight(300); // Adjust size
 
             if (i % 2 == 0) {
-                newLevelPane.setBackground(white);
+                newLevelPane.setStyle("-fx-background-color: #BEB19E;");
             } else {
-                newLevelPane.setBackground(nearWhite);
+                newLevelPane.setStyle("-fx-background-color: #d0c1ac;");
             }
 
             this.getChildren().add(newLevelPane);
