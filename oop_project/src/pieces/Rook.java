@@ -15,7 +15,10 @@ public class Rook extends Piece implements Moveable{
         int dy = targetY - startY;
 
         // Rooks move in straight lines (horizontal or vertical)
-        return (dx == 0 || dy == 0) && isPathClear(startX, startY, targetX, targetY, chessPane);
+        if( (dx == 0 || dy == 0) && isPathClear(startX, startY, targetX, targetY, chessPane)) {
+        	return canLandOn(targetX, targetY, chessPane);
+        }
+        return false;
     }
 
     

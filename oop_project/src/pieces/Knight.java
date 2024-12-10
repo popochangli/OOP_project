@@ -15,6 +15,9 @@ public class Knight extends Piece implements Moveable{
         int dy = Math.abs(targetY - startY);
 
         // Knights move in an "L" shape
-        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+        if( (dx == 2 && dy == 1) || (dx == 1 && dy == 2)) {
+        	return canLandOn(targetX, targetY, chessPane);
+        }
+        return false;
     }
 }

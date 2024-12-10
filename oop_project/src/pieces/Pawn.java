@@ -30,13 +30,13 @@ public class Pawn extends Piece implements Moveable{
 
         // White pawn moves forward (dy = -1) to an empty cell
         if (dx == 0 && dy == -1 && !targetCell.hasPiece()) {
-            return true;
+            return canLandOn(targetX, targetY, chessPane);
         }
 
         // White pawn captures diagonally (dy = -1, abs(dx) = 1) if an opponent piece exists
         if (dy == -1 && Math.abs(dx) == 1) {
             Piece targetPiece = targetCell.getPiece();
-            return targetPiece != null;// Opponent piece
+            return targetPiece != null && canLandOn(targetX, targetY, chessPane);// Opponent piece
         }
 
         return false;
