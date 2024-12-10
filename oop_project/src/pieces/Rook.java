@@ -3,7 +3,7 @@ package pieces;
 import gui.ChessPane;
 import javafx.scene.image.Image;
 
-public class Rook extends Piece {
+public class Rook extends Piece implements Moveable{
 
     public Rook(String team, Image image) {
         super(team, image);
