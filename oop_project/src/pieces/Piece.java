@@ -1,36 +1,46 @@
 package pieces;
 
+import javafx.scene.image.Image;
+import gui.ChessPane;
+
 public abstract class Piece {
-	 protected int[] location = new int[2];
-	    private final boolean team; // true = white, false = black
-	    private boolean inPlay = true;
+    protected String team; // "W" for White, "B" for Black
+    protected Image image;
 
-	    public Piece(boolean team, int[] location) {
-	        this.team = team;
-	        this.location = location;
-	    }
+    public Piece(String team, Image image) {
+        this.team = team;
+        this.image = image;
+    }
 
-	    public boolean getTeam() {
-	        return team;
-	    }
+    public String getTeam() {
+        return team;
+    }
 
-	    public int[] getLocation() {
-	        return location;
-	    }
+    public Image getImage() {
+        return image;
+    }
 
-	    public void setLocation(int x, int y) {
-	        location[0] = x;
-	        location[1] = y;
-	    }
+    public void setTeam(String team) {
+		this.team = team;
+	}
 
-	    public boolean isInPlay() {
-	        return inPlay;
-	    }
+	public abstract boolean validateMove(int startX, int startY, int targetX, int targetY, ChessPane chessPane);
+	
+	//Might wrong
+	protected boolean isPathClear(int startX, int startY, int targetX, int targetY, ChessPane chessPane) {
+        int dx = Integer.compare(targetX, startX);
+        int dy = Integer.compare(targetY, startY);
 
-	    public void remove() {
-	        inPlay = false;
-	    }
+        int x = startX + dx;
+        int y = startY + dy;
 
-	    // Abstract method to validate moves for specific piece types
-	    public abstract boolean moveValid(int[] target, Piece[][] board);
+        while (x != targetX || y != targetY) {
+            if (chessPane.getCell(x, y).hasPiece()) {
+                return false;
+            }
+            x += dx;
+            y += dy;
+        }
+        return true;
+    }
 }

@@ -135,6 +135,13 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Piece;
+import pieces.Queen;
+import pieces.Rook;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -170,16 +177,31 @@ public class ChessPane extends GridPane {
 				cell.setPrefSize((double) cellSize, (double) cellSize);
 
 				if (l < pieces.size()) {
-					String piece = pieces.get(l);
-					String imagePath = (i + j) % 2 == 0 ? "piece/" + piece + "B.png" : "piece/" + piece + "W.png";
+//					String piece = pieces.get(l);
+//					String imagePath = (i + j) % 2 == 0 ? "piece/" + piece + "B.png" : "piece/" + piece + "W.png";
+//
+//					Image pieceImage = loadImage(imagePath);
+//
+//					if (pieceImage != null) {
+//						cell.draw(pieceImage, (i + j) % 2 == 0 ? piece + "B" : piece + "W");
+//					} else {
+//						cell.draw(null, null);
+//					}
+					String pieceType = pieces.get(l); // e.g., "pawn", "rook"
+		            String team = (i + j) % 2 == 0 ? "B" : "W"; // Determine team based on position
+		            String imagePath = "piece/" + pieceType + team + ".png";
 
-					Image pieceImage = loadImage(imagePath);
+		            Image pieceImage = loadImage(imagePath);
 
-					if (pieceImage != null) {
-						cell.draw(pieceImage, (i + j) % 2 == 0 ? piece + "B" : piece + "W");
-					} else {
-						cell.draw(null, null);
-					}
+		            if (pieceImage != null) {
+		                // Create the Piece object and draw it
+		                Piece piece = createPieceFromType(pieceType + team, pieceImage);
+		                if (piece != null) {
+		                    cell.draw(piece);
+		                }
+		            } else {
+		                cell.clearPiece(); // Clear the cell if the image is not found
+		            }
 				}
 
 				this.allCells.add(cell);
@@ -189,7 +211,30 @@ public class ChessPane extends GridPane {
 		}
 	}
 
-	
+	public Piece createPieceFromType(String pieceType, Image pieceImage) {
+	    String team = pieceType.substring(pieceType.length() - 1); // Extract team ("W" or "B")
+	    String type = pieceType.substring(0, pieceType.length() - 1); // Extract piece type
+	    
+	    System.out.println("Creating piece: Type = " + type + ", Team = " + team);
+
+	    switch (type.toLowerCase()) {
+	        case "pawn":
+	            return new Pawn(team, pieceImage);
+	        case "rook":
+	            return new Rook(team, pieceImage);
+	        case "knight":
+	            return new Knight(team, pieceImage);
+	        case "bishop":
+	            return new Bishop(team, pieceImage);
+	        case "queen":
+	            return new Queen(team, pieceImage);
+	        case "king":
+	            return new King(team, pieceImage);
+	        default:
+	            System.out.println("Unknown piece type: " + type);
+	            return null; // Unknown piece type
+	    }
+	}
 
 	public int getChessPaneWidth() {
 		return chessPaneWidth;
@@ -247,8 +292,14 @@ public class ChessPane extends GridPane {
 	    for (int x = 0; x < getChessPaneWidth(); x++) {
 	        for (int y = 0; y < getChessPaneHeight(); y++) {
 	            TicTacToeCell cell = getCell(x, y);
-	            if (cell != null && cell.hasPiece() && cell.getPieceType().endsWith("B")) {
-	                return false; // A black piece is still on the board
+//	            if (cell != null && cell.hasPiece() && cell.getPieceType().endsWith("B")) {
+//	                return false; // A black piece is still on the board
+//	            }
+	            if (cell != null && cell.hasPiece()) {
+	                Piece piece = cell.getPiece(); // Get the Piece object
+	                if (piece != null && "B".equals(piece.getTeam())) {
+	                    return false; // A black piece is still on the board
+	                }
 	            }
 	        }
 	    }

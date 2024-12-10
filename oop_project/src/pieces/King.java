@@ -3,9 +3,9 @@ package pieces;
 import gui.ChessPane;
 import javafx.scene.image.Image;
 
-public class Bishop extends Piece {
+public class King extends Piece {
 
-    public Bishop(String team, Image image) {
+    public King(String team, Image image) {
         super(team, image);
     }
 
@@ -14,9 +14,7 @@ public class Bishop extends Piece {
         int dx = Math.abs(targetX - startX);
         int dy = Math.abs(targetY - startY);
 
-        // Bishops move diagonally
-        return dx == dy && isPathClear(startX, startY, targetX, targetY, chessPane);
+        // Kings move one square in any direction
+        return dx <= 1 && dy <= 1;
     }
-
-    
 }
