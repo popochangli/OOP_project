@@ -2,7 +2,7 @@ package pieces;
 
 import javafx.scene.image.Image;
 import gui.ChessPane;
-import gui.TicTacToeCell;
+import gui.ChessCell;
 
 public abstract class Piece {
     protected String team; // "W" for White, "B" for Black
@@ -41,7 +41,7 @@ public abstract class Piece {
 //            if (chessPane.getCell(x, y).hasPiece()) {
 //                return false;
 //            }
-        	TicTacToeCell cell = chessPane.getCell(x, y);
+        	ChessCell cell = chessPane.getCell(x, y);
             if (cell == null || cell.hasWall() || cell.hasPiece()) {
                 return false; // Path is blocked by a wall or another piece
             }
@@ -53,7 +53,7 @@ public abstract class Piece {
 	
 	//add wall edit
 	protected boolean canLandOn(int targetX, int targetY, ChessPane chessPane) {
-	    TicTacToeCell targetCell = chessPane.getCell(targetX, targetY);
+	    ChessCell targetCell = chessPane.getCell(targetX, targetY);
 
 	    // Check if the target cell has a wall
 	    if (targetCell != null && targetCell.hasWall()) {

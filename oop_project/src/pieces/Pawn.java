@@ -1,7 +1,7 @@
 package pieces;
 
 import gui.ChessPane;
-import gui.TicTacToeCell;
+import gui.ChessCell;
 import javafx.scene.image.Image;
 
 public class Pawn extends Piece implements Moveable{
@@ -22,7 +22,7 @@ public class Pawn extends Piece implements Moveable{
 //            return dx == 0 && dy == 1 && !chessPane.getCell(targetX, targetY).hasPiece();
 //        }
      // Check if target cell is within bounds
-        TicTacToeCell targetCell = chessPane.getCell(targetX, targetY);
+        ChessCell targetCell = chessPane.getCell(targetX, targetY);
         if (targetCell == null) {
             System.out.println("Target cell is out of bounds or null.");
             return false;

@@ -95,7 +95,7 @@
 //		getChildren().remove(tp2);
 //		GameLogic.getInstance().newGame();
 //		updateGameText("Tic Tac Toe");
-//		for(TicTacToeCell x:chessPane.getAllCells()){
+//		for(ChessCell x:chessPane.getAllCells()){
 //			x.initializeCellColor();
 //		}
 //		inttializeTimeText();

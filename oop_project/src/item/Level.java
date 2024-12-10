@@ -1,10 +1,5 @@
 package item;
 
-import gui.TicTacToeCell;
-import javafx.scene.image.Image;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Level {

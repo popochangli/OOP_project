@@ -275,11 +275,9 @@ package logic;
 
 import gui.ChessPane;
 import gui.ControlPane;
-import gui.TicTacToeCell;
+import gui.ChessCell;
 import gui.TimerPane;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class GameLogic {
 
@@ -501,7 +499,7 @@ public class GameLogic {
 		System.out.println(k);
 		ChessPane chessPane = k.getChessPane();
 		int numBlack = 0;
-		for(TicTacToeCell x : chessPane.getAllCells()){
+		for(ChessCell x : chessPane.getAllCells()){
 			if(x.hasPiece() && "B".equals(x.getPiece().getTeam())){
 				numBlack++;
 			}

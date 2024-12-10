@@ -3,32 +3,17 @@ package gui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import pieces.Bishop;
-import pieces.King;
-import pieces.Knight;
-import pieces.Pawn;
 import pieces.Piece;
 import pieces.PieceFactory;
-import pieces.Queen;
-import pieces.Rook;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ChessPane extends GridPane {
 
-	private ArrayList<TicTacToeCell> allCells;
+	private ArrayList<ChessCell> allCells;
 	private static final Map<String, Image> imageCache = new HashMap<>();
 	private int chessPaneWidth;
 	private int chessPaneHeight;
@@ -54,7 +39,7 @@ public class ChessPane extends GridPane {
 
         for (int i = 0; i < width; ++i) {
             for (int j = 0; j < height; ++j) {
-                TicTacToeCell cell = new TicTacToeCell(i, j);
+                ChessCell cell = new ChessCell(i, j);
                 cell.setPrefSize(cellSize, cellSize);
 
                 // Assign pieces based on input
@@ -112,11 +97,11 @@ public class ChessPane extends GridPane {
 
 
 
-	public ArrayList<TicTacToeCell> getAllCells() {
+	public ArrayList<ChessCell> getAllCells() {
 		return this.allCells;
 	}
 	
-	public TicTacToeCell getCell(int x, int y) {
+	public ChessCell getCell(int x, int y) {
         if (x < 0 || x >= chessPaneWidth || y < 0 || y >= chessPaneHeight) {
             return null;
         }
@@ -127,7 +112,7 @@ public class ChessPane extends GridPane {
 	public boolean checkWin() {
 	    for (int x = 0; x < getChessPaneWidth(); x++) {
 	        for (int y = 0; y < getChessPaneHeight(); y++) {
-	            TicTacToeCell cell = getCell(x, y);
+	            ChessCell cell = getCell(x, y);
 	            if (cell != null && cell.hasPiece()) {
 	                Piece piece = cell.getPiece(); // Get the Piece object
 	                if (piece != null && "B".equals(piece.getTeam())) {
