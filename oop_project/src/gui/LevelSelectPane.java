@@ -22,15 +22,17 @@ public class LevelSelectPane extends VBox {
     private LevelSelectPane() {
         levels = new ArrayList<>();
 
-        levels.add(new Level("Hairy Panner and the professor's stove", 2, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
+        levels.add(new Level("Ez la", 0, 1, 2, new ArrayList<>(List.of("kingW", "rookB"))));
 
-        levels.add(new Level("Hairy Panner and the Kitchen of secrets", 3, 5, 8, new ArrayList<>(List.of("kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", "pawnW", "bishopB", "bishopW", "bishopW"))));
+        levels.add(new Level("Full of crap", 2, 5, 8, new ArrayList<>(List.of("kingB", "queenW", "rookB", "knightW", "bishopB", "pawnW", "knightB", "rookW", "kingW", "wall", "pawnW", "knightB", "kingW", "bishopB", "pawnW", "queenW", "rookB", "pawnW", "kingB", "queenW", "wall", "knightW", "pawnB", "rookW", "bishopB", "pawnW", "knightB", "queenW", "kingB", "queenW", "knightB", "pawnW", "knightB", "wall", "kingW", "rookB", "pawnW", "bishopB", "bishopW", "bishopW"))));
 
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", 1, 3, 3, new ArrayList<>(List.of("kingW", "pawnB", "rookW", "queenB", "knightW", "pawnB", "knightW", "bishopB", "pawnW"))));
+        levels.add(new Level("One will do", 1, 3, 3, new ArrayList<>(List.of("kingW", "pawnB", "rookW", "queenB", "knightW", "pawnB", "knightW", "bishopB", "pawnW"))));
 
-        levels.add(new Level("Hairy Panner and the Chef of AsKarnBan", 3, 4, 4, new ArrayList<>(List.of("wall", "knightB", "knightW", "pawnB", "knightW", "knightB", "knightW", "knightB", "knightW", "wall", "knightW", "knightB", "knightW", "knightB", "knightW", "wall"))));
+        levels.add(new Level("Horse Frenzy", 3, 4, 4, new ArrayList<>(List.of("wall", "knightB", "knightB", "knightW", "knightB", "knightB", "wall", "knightB", "knightB", "knightB", "knightB", "knightB", "pawnB", "knightB", "knightB", "wall"))));
 
-        levels.add(new Level("chess01", 2, 4, 4, new ArrayList<>(List.of("bishopB", "blank", "wall", "knightB", "blank", "pawnB", "rookW", "pawnB", "rookB", "queenB", "bishopB", "blank", "pawnB", "blank", "wall", "pawnB"))));
+        levels.add(new Level("Rook Escape", 2, 4, 4, new ArrayList<>(List.of("bishopB", "blank", "wall", "knightB", "blank", "pawnB", "rookW", "pawnB", "rookB", "queenB", "bishopB", "blank", "pawnB", "blank", "wall", "pawnB"))));
+
+        levels.add(new Level("Kind of threes", 4, 6, 6, new ArrayList<>(List.of("rookB", "wall", "wall", "blank", "blank", "pawnB", "rookB", "wall", "wall", "blank", "blank", "pawnB", "rookB", "blank", "wall", "bishopB", "blank", "pawnW", "blank", "blank", "blank", "bishopB", "blank", "wall", "knightB", "knightB", "blank", "bishopB", "blank", "wall", "blank", "knightB", "blank", "blank", "blank", "wall"))));
 
         this.setFillWidth(true);
         this.setAlignment(Pos.CENTER);
